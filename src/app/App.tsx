@@ -1,9 +1,9 @@
-import { useState, useCallback } from "react";
-import Box from "@mui/material/Box";
-import { TopNav } from "../components/layout/TopNav";
-import { MobileNav } from "../components/layout/MobileNav";
-import { Footer } from "../components/layout/Footer";
-import { AppRoutes } from "./routes";
+import { useState, useCallback } from 'react';
+import Box from '@mui/material/Box';
+import { TopNav } from '../components/layout/TopNav';
+import { MobileNav } from '../components/layout/MobileNav';
+import { Footer } from '../components/layout/Footer';
+import { AppRoutes } from './routes';
 
 export function App() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -19,9 +19,9 @@ export function App() {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
       }}
     >
       <TopNav onMobileMenuOpen={handleMobileMenuOpen} />

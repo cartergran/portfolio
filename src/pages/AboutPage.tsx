@@ -1,7 +1,7 @@
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import { PageContainer } from "../components/layout/PageContainer";
-import { Section } from "../components/layout/Section";
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import { PageContainer } from '../components/layout/PageContainer';
+import { Section } from '../components/layout/Section';
 
 export function AboutPage() {
   return (

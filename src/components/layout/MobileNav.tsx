@@ -1,11 +1,11 @@
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 interface NavItem {
   label: string;
@@ -13,8 +13,8 @@ interface NavItem {
 }
 
 const NAV_ITEMS: readonly NavItem[] = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
 ] as const;
 
 interface MobileNavProps {
@@ -32,13 +32,13 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
       onClose={onClose}
       PaperProps={{
         sx: {
-          width: "100%",
+          width: '100%',
           maxWidth: 320,
           pt: 1,
         },
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "flex-end", px: 1 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: 1 }}>
         <IconButton aria-label="Close navigation menu" onClick={onClose}>
           <CloseIcon />
         </IconButton>

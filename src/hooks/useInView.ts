@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 interface UseInViewOptions {
   threshold?: number;
@@ -8,7 +8,7 @@ interface UseInViewOptions {
 
 export function useInView({
   threshold = 0.1,
-  rootMargin = "0px",
+  rootMargin = '0px',
   triggerOnce = true,
 }: UseInViewOptions = {}) {
   const ref = useRef<HTMLDivElement>(null);

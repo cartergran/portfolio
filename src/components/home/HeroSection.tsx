@@ -1,16 +1,16 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { useInView } from "../../hooks/useInView";
-import { CTAButton } from "../common/CTAButton";
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useInView } from '../../hooks/useInView';
+import { CTAButton } from '../common/CTAButton';
 
 const FADE_SX = {
-  "@media (prefers-reduced-motion: reduce)": {
+  '@media (prefers-reduced-motion: reduce)': {
     opacity: 1,
-    transform: "none",
-    transition: "none",
+    transform: 'none',
+    transition: 'none',
   },
 } as const;
 
@@ -24,8 +24,8 @@ export function HeroSection() {
       sx={{
         py: { xs: 6, sm: 10, md: 14 },
         opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(24px)",
-        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+        transform: inView ? 'none' : 'translateY(24px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
         ...FADE_SX,
       }}
     >
@@ -50,7 +50,7 @@ export function HeroSection() {
           clean code, great user experience, and modern tooling.
         </Typography>
         <Stack
-          direction={{ xs: "column", sm: "row" }}
+          direction={{ xs: 'column', sm: 'row' }}
           spacing={1.5}
           sx={{ pt: 1 }}
         >
@@ -59,8 +59,8 @@ export function HeroSection() {
             color="primary"
             onClick={() => {
               document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" });
+                .getElementById('projects')
+                ?.scrollIntoView({ behavior: 'smooth' });
             }}
           >
             View Projects

@@ -1,18 +1,18 @@
-import type { ReactNode, MouseEventHandler } from "react";
-import Button from "@mui/material/Button";
-import type { ButtonOwnProps } from "@mui/material/Button";
-import { Link as RouterLink } from "react-router-dom";
+import type { ReactNode, MouseEventHandler } from 'react';
+import Button from '@mui/material/Button';
+import type { ButtonOwnProps } from '@mui/material/Button';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface CTAButtonProps {
   children: ReactNode;
   to?: string;
   href?: string;
-  variant?: ButtonOwnProps["variant"];
-  color?: ButtonOwnProps["color"];
-  size?: ButtonOwnProps["size"];
-  startIcon?: ButtonOwnProps["startIcon"];
-  endIcon?: ButtonOwnProps["endIcon"];
-  sx?: ButtonOwnProps["sx"];
+  variant?: ButtonOwnProps['variant'];
+  color?: ButtonOwnProps['color'];
+  size?: ButtonOwnProps['size'];
+  startIcon?: ButtonOwnProps['startIcon'];
+  endIcon?: ButtonOwnProps['endIcon'];
+  sx?: ButtonOwnProps['sx'];
   fullWidth?: boolean;
   onClick?: MouseEventHandler<HTMLElement>;
 }
@@ -20,7 +20,7 @@ interface CTAButtonProps {
 export function CTAButton({
   to,
   href,
-  variant = "contained",
+  variant = 'contained',
   children,
   color,
   size,

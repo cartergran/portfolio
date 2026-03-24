@@ -1,46 +1,47 @@
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 const baseTheme = createTheme({
   palette: {
-    mode: "light",
+    mode: 'light',
     primary: {
-      main: "#1a1a2e",
-      light: "#30305a",
-      dark: "#0f0f1a",
-      contrastText: "#ffffff",
+      main: '#1a1a2e',
+      light: '#30305a',
+      dark: '#0f0f1a',
+      contrastText: '#ffffff',
     },
     secondary: {
-      main: "#4a6cf7",
-      light: "#7b93f9",
-      dark: "#2a4cd4",
-      contrastText: "#ffffff",
+      main: '#4a6cf7',
+      light: '#7b93f9',
+      dark: '#2a4cd4',
+      contrastText: '#ffffff',
     },
     background: {
-      default: "#fafafa",
-      paper: "#ffffff",
+      default: '#fafafa',
+      paper: '#ffffff',
     },
     text: {
-      primary: "#1a1a2e",
-      secondary: "#5a5a72",
+      primary: '#1a1a2e',
+      secondary: '#5a5a72',
     },
-    divider: "rgba(26, 26, 46, 0.08)",
+    divider: 'rgba(26, 26, 46, 0.08)',
   },
 
   typography: {
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    fontFamily:
+      '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     h1: {
       fontWeight: 700,
-      letterSpacing: "-0.02em",
+      letterSpacing: '-0.02em',
       lineHeight: 1.15,
     },
     h2: {
       fontWeight: 700,
-      letterSpacing: "-0.01em",
+      letterSpacing: '-0.01em',
       lineHeight: 1.2,
     },
     h3: {
       fontWeight: 600,
-      letterSpacing: "-0.005em",
+      letterSpacing: '-0.005em',
       lineHeight: 1.3,
     },
     h4: {
@@ -57,16 +58,16 @@ const baseTheme = createTheme({
     },
     body1: {
       lineHeight: 1.7,
-      letterSpacing: "0.005em",
+      letterSpacing: '0.005em',
     },
     body2: {
       lineHeight: 1.6,
-      letterSpacing: "0.005em",
+      letterSpacing: '0.005em',
     },
     button: {
       fontWeight: 600,
-      letterSpacing: "0.02em",
-      textTransform: "none",
+      letterSpacing: '0.02em',
+      textTransform: 'none',
     },
   },
 
@@ -88,26 +89,26 @@ const baseTheme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         html: {
-          scrollBehavior: "smooth",
-          "@media (prefers-reduced-motion: reduce)": {
-            scrollBehavior: "auto",
+          scrollBehavior: 'smooth',
+          '@media (prefers-reduced-motion: reduce)': {
+            scrollBehavior: 'auto',
           },
         },
         body: {
-          overflowX: "hidden",
+          overflowX: 'hidden',
         },
       },
     },
     MuiContainer: {
       defaultProps: {
-        maxWidth: "lg",
+        maxWidth: 'lg',
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
           borderRadius: 8,
-          padding: "8px 20px",
+          padding: '8px 20px',
         },
       },
       defaultProps: {
@@ -120,9 +121,9 @@ const baseTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          backgroundColor: "rgba(255, 255, 255, 0.85)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(26, 26, 46, 0.08)",
+          backgroundColor: 'rgba(255, 255, 255, 0.85)',
+          backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid rgba(26, 26, 46, 0.08)',
         },
       },
     },

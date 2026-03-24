@@ -1,12 +1,12 @@
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 interface TagListProps {
   tags: readonly string[];
-  size?: "small" | "medium";
+  size?: 'small' | 'medium';
 }
 
-export function TagList({ tags, size = "small" }: TagListProps) {
+export function TagList({ tags, size = 'small' }: TagListProps) {
   return (
     <Stack direction="row" flexWrap="wrap" gap={1}>
       {tags.map((tag) => (
@@ -17,8 +17,8 @@ export function TagList({ tags, size = "small" }: TagListProps) {
           variant="outlined"
           sx={{
             fontWeight: 500,
-            borderColor: "divider",
-            color: "text.secondary",
+            borderColor: 'divider',
+            color: 'text.secondary',
           }}
         />
       ))}

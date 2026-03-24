@@ -1,17 +1,17 @@
-import type { ReactNode } from "react";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import type { ContainerProps } from "@mui/material/Container";
+import type { ReactNode } from 'react';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import type { ContainerProps } from '@mui/material/Container';
 
 interface PageContainerProps {
   children: ReactNode;
-  maxWidth?: ContainerProps["maxWidth"];
+  maxWidth?: ContainerProps['maxWidth'];
   disableGutters?: boolean;
 }
 
 export function PageContainer({
   children,
-  maxWidth = "lg",
+  maxWidth = 'lg',
   disableGutters = false,
 }: PageContainerProps) {
   return (

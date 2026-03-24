@@ -1,16 +1,16 @@
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
-  align?: "left" | "center";
+  align?: 'left' | 'center';
 }
 
 export function SectionHeading({
   title,
   subtitle,
-  align = "left",
+  align = 'left',
 }: SectionHeadingProps) {
   return (
     <Stack spacing={1.5} sx={{ textAlign: align, mb: { xs: 4, sm: 6 } }}>
@@ -21,7 +21,7 @@ export function SectionHeading({
         <Typography
           variant="body1"
           color="text.secondary"
-          sx={{ maxWidth: 560, mx: align === "center" ? "auto" : undefined }}
+          sx={{ maxWidth: 560, mx: align === 'center' ? 'auto' : undefined }}
         >
           {subtitle}
         </Typography>

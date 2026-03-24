@@ -1,12 +1,12 @@
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
-import CloseIcon from "@mui/icons-material/Close";
-import { TagList } from "../common/TagList";
-import type { FeaturedProject } from "../../data/projects";
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
+import CloseIcon from '@mui/icons-material/Close';
+import { TagList } from '../common/TagList';
+import type { FeaturedProject } from '../../data/projects';
 
 interface ProjectDetailProps {
   project: FeaturedProject;
@@ -20,15 +20,15 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
       sx={{
         p: { xs: 3, sm: 4 },
         borderTopWidth: 3,
-        borderTopStyle: "solid",
-        borderTopColor: "secondary.main",
+        borderTopStyle: 'solid',
+        borderTopColor: 'secondary.main',
       }}
     >
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
           mb: 3,
         }}
       >
@@ -48,7 +48,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         <IconButton
           onClick={onClose}
           aria-label="Close project details"
-          sx={{ ml: 2, mt: -0.5, color: "text.secondary" }}
+          sx={{ ml: 2, mt: -0.5, color: 'text.secondary' }}
         >
           <CloseIcon />
         </IconButton>
@@ -64,7 +64,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
       <Typography
         variant="overline"
         color="text.secondary"
-        sx={{ display: "block", mb: 1.5, letterSpacing: "0.1em" }}
+        sx={{ display: 'block', mb: 1.5, letterSpacing: '0.1em' }}
       >
         Technologies
       </Typography>
@@ -73,14 +73,14 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
         sx={{
           mt: 4,
           p: 3,
-          bgcolor: "action.hover",
+          bgcolor: 'action.hover',
           borderRadius: 1,
         }}
       >
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ fontStyle: "italic" }}
+          sx={{ fontStyle: 'italic' }}
         >
           Detailed case study coming soon.
         </Typography>

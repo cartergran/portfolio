@@ -1,9 +1,9 @@
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { Link as RouterLink } from "react-router-dom";
-import { PageContainer } from "../components/layout/PageContainer";
-import { Section } from "../components/layout/Section";
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { Link as RouterLink } from 'react-router-dom';
+import { PageContainer } from '../components/layout/PageContainer';
+import { Section } from '../components/layout/Section';
 
 export function NotFoundPage() {
   return (
@@ -11,7 +11,7 @@ export function NotFoundPage() {
       <Section
         sx={{
           py: { xs: 8, sm: 12 },
-          textAlign: "center",
+          textAlign: 'center',
         }}
       >
         <Stack spacing={3} alignItems="center">

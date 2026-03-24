@@ -1,13 +1,13 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { TagList } from "../common/TagList";
-import type { FeaturedProject } from "../../data/projects";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { TagList } from '../common/TagList';
+import type { FeaturedProject } from '../../data/projects';
 
 interface ProjectCardProps {
   project: FeaturedProject;
@@ -24,23 +24,23 @@ export function ProjectCard({
     <Card
       variant="outlined"
       sx={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
         transition:
-          "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
+          'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
         ...(isExpanded && {
-          borderColor: "secondary.main",
+          borderColor: 'secondary.main',
           boxShadow: 4,
         }),
-        "&:hover": {
-          ...(!isExpanded && { transform: "translateY(-4px)" }),
+        '&:hover': {
+          ...(!isExpanded && { transform: 'translateY(-4px)' }),
           boxShadow: 8,
         },
-        "@media (prefers-reduced-motion: reduce)": {
-          transition: "none",
-          "&:hover": {
-            transform: "none",
+        '@media (prefers-reduced-motion: reduce)': {
+          transition: 'none',
+          '&:hover': {
+            transform: 'none',
           },
         },
       }}
@@ -72,17 +72,17 @@ export function ProjectCard({
           size="small"
           sx={{
             fontWeight: 600,
-            "&:hover": {
-              bgcolor: "secondary.main",
-              color: "secondary.contrastText",
+            '&:hover': {
+              bgcolor: 'secondary.main',
+              color: 'secondary.contrastText',
             },
-            transition: "background-color 0.2s ease, color 0.2s ease",
-            "@media (prefers-reduced-motion: reduce)": {
-              transition: "none",
+            transition: 'background-color 0.2s ease, color 0.2s ease',
+            '@media (prefers-reduced-motion: reduce)': {
+              transition: 'none',
             },
           }}
         >
-          {isExpanded ? "Close" : "View Project"}
+          {isExpanded ? 'Close' : 'View Project'}
         </Button>
       </CardActions>
     </Card>

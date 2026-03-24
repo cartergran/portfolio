@@ -1,12 +1,12 @@
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Link as RouterLink } from "react-router-dom";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface NavItem {
   label: string;
@@ -14,8 +14,8 @@ interface NavItem {
 }
 
 const NAV_ITEMS: readonly NavItem[] = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
 ] as const;
 
 interface TopNavProps {
@@ -26,16 +26,16 @@ export function TopNav({ onMobileMenuOpen }: TopNavProps) {
   return (
     <AppBar position="sticky" color="transparent">
       <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
           <Typography
             variant="h6"
             component={RouterLink}
             to="/"
             sx={{
-              color: "text.primary",
-              textDecoration: "none",
+              color: 'text.primary',
+              textDecoration: 'none',
               fontWeight: 700,
-              letterSpacing: "-0.01em",
+              letterSpacing: '-0.01em',
             }}
           >
             Portfolio
@@ -45,7 +45,7 @@ export function TopNav({ onMobileMenuOpen }: TopNavProps) {
           <Box
             component="nav"
             sx={{
-              display: { xs: "none", sm: "flex" },
+              display: { xs: 'none', sm: 'flex' },
               gap: 0.5,
             }}
           >
@@ -56,8 +56,8 @@ export function TopNav({ onMobileMenuOpen }: TopNavProps) {
                 to={item.to}
                 color="inherit"
                 sx={{
-                  color: "text.secondary",
-                  "&:hover": { color: "text.primary" },
+                  color: 'text.secondary',
+                  '&:hover': { color: 'text.primary' },
                 }}
               >
                 {item.label}
@@ -69,7 +69,7 @@ export function TopNav({ onMobileMenuOpen }: TopNavProps) {
           <IconButton
             aria-label="Open navigation menu"
             onClick={onMobileMenuOpen}
-            sx={{ display: { sm: "none" }, color: "text.primary" }}
+            sx={{ display: { sm: 'none' }, color: 'text.primary' }}
           >
             <MenuIcon />
           </IconButton>
