@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Collapse from "@mui/material/Collapse";
@@ -32,13 +32,12 @@ export function ProjectGrid() {
   );
   const timeout = prefersReducedMotion ? 0 : 350;
 
-  useEffect(() => {
-    const prev = prevExpandedRef.current;
-    if (prev && prev !== expandedSlug) {
-      setCollapsingSlug(prev);
+  if (prevExpandedRef.current && prevExpandedRef.current !== expandedSlug) {
+    if (collapsingSlug !== prevExpandedRef.current) {
+      setCollapsingSlug(prevExpandedRef.current);
     }
-    prevExpandedRef.current = expandedSlug;
-  }, [expandedSlug]);
+  }
+  prevExpandedRef.current = expandedSlug;
 
   const handleToggle = useCallback(
     (slug: string) => {
