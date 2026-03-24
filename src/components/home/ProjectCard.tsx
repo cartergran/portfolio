@@ -5,15 +5,21 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { Link as RouterLink } from "react-router-dom";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { TagList } from "../common/TagList";
 import type { FeaturedProject } from "../../data/projects";
 
 interface ProjectCardProps {
   project: FeaturedProject;
+  isExpanded: boolean;
+  onToggle: (slug: string) => void;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  isExpanded,
+  onToggle,
+}: ProjectCardProps) {
   return (
     <Card
       variant="outlined"
@@ -21,9 +27,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        transition: "transform 0.2s ease, box-shadow 0.2s ease",
+        transition:
+          "transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease",
+        ...(isExpanded && {
+          borderColor: "secondary.main",
+          boxShadow: 4,
+        }),
         "&:hover": {
-          transform: "translateY(-4px)",
+          ...(!isExpanded && { transform: "translateY(-4px)" }),
           boxShadow: 8,
         },
         "@media (prefers-reduced-motion: reduce)": {
@@ -55,21 +66,23 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </CardContent>
       <CardActions sx={{ px: { xs: 2.5, sm: 3 }, pb: 2.5, pt: 0 }}>
         <Button
-          component={RouterLink}
-          to={`/projects/${project.slug}`}
-          endIcon={<ArrowForwardIcon />}
+          onClick={() => onToggle(project.slug)}
+          endIcon={isExpanded ? <ExpandLessIcon /> : <ArrowForwardIcon />}
           color="secondary"
           size="small"
           sx={{
             fontWeight: 600,
-            "&:hover": { bgcolor: "secondary.main", color: "secondary.contrastText" },
+            "&:hover": {
+              bgcolor: "secondary.main",
+              color: "secondary.contrastText",
+            },
             transition: "background-color 0.2s ease, color 0.2s ease",
             "@media (prefers-reduced-motion: reduce)": {
               transition: "none",
             },
           }}
         >
-          View Project
+          {isExpanded ? "Close" : "View Project"}
         </Button>
       </CardActions>
     </Card>
