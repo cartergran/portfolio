@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -9,6 +10,16 @@ export function HeroSection() {
   return (
     <FadeIn component="section" sx={{ py: { xs: 6, sm: 10, md: 14 } }}>
       <Stack spacing={3} sx={{ maxWidth: 640 }}>
+        <Box
+          component="img"
+          src="/logo.svg"
+          alt="Logo"
+          sx={{
+            width: { xs: 88, sm: 144 },
+            height: { xs: 88, sm: 144 },
+            objectFit: 'contain',
+          }}
+        />
         <Typography variant="h2" component="h1">
           Hi, I&rsquo;m Carter
         </Typography>
@@ -25,8 +36,7 @@ export function HeroSection() {
           color="text.secondary"
           sx={{ maxWidth: 520 }}
         >
-          I build thoughtful, well-crafted web applications with a focus on
-          clean code, great user experience, and modern tooling.
+          Turning “this could be cool” into software worth using.
         </Typography>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}

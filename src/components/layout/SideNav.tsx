@@ -36,13 +36,26 @@ export function SideNav() {
     >
       {/* Condensed hero */}
       <Box sx={{ px: 3, pt: 3, pb: 2, flex: '0 0 auto' }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, color: 'text.primary' }}>
-          Carter
-        </Typography>
-        <Typography variant="body2" sx={{ color: 'secondary.main' }}>
-          Full-Stack Developer
-        </Typography>
-        <Stack direction="row" spacing={0.5} sx={{ mt: 1 }}>
+        <Stack spacing={0.5} sx={{ mb: 1.5 }}>
+          <Box
+            component="img"
+            src="/logo.svg"
+            alt="Logo"
+            width={144}
+            height={144}
+            sx={{ objectFit: 'contain' }}
+          />
+          <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary' }}>
+            Carter Gran
+          </Typography>
+          <Typography variant="body1" sx={{ color: 'secondary.main' }}>
+            Full-Stack Developer
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.4 }}>
+            Turning &ldquo;this could be cool&rdquo; into software worth using.
+          </Typography>
+        </Stack>
+        <Stack direction="row" spacing={0.5}>
           <IconButton
             size="small"
             href="https://github.com"
