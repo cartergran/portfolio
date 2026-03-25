@@ -5,7 +5,10 @@ import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import CloseIcon from '@mui/icons-material/Close';
-import { TagList } from '../common/TagList';
+import { ProjectOverview } from './detail/ProjectOverview';
+import { ProjectMetrics } from './detail/ProjectMetrics';
+import { ProjectLinks } from './detail/ProjectLinks';
+import { ProjectTechStack } from './detail/ProjectTechStack';
 import type { FeaturedProject } from '../../data/projects';
 
 interface ProjectDetailProps {
@@ -14,6 +17,8 @@ interface ProjectDetailProps {
 }
 
 export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
+  const { caseStudy } = project;
+
   return (
     <Paper
       variant="outlined"
@@ -53,6 +58,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
           <CloseIcon />
         </IconButton>
       </Box>
+
       <Typography
         variant="body1"
         color="text.secondary"
@@ -60,31 +66,16 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
       >
         {project.description}
       </Typography>
-      <Divider sx={{ mb: 3 }} />
-      <Typography
-        variant="overline"
-        color="text.secondary"
-        sx={{ display: 'block', mb: 1.5, letterSpacing: '0.1em' }}
-      >
-        Technologies
-      </Typography>
-      <TagList tags={project.tags} size="medium" />
-      <Box
-        sx={{
-          mt: 4,
-          p: 3,
-          bgcolor: 'action.hover',
-          borderRadius: 1,
-        }}
-      >
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ fontStyle: 'italic' }}
-        >
-          Detailed case study coming soon.
-        </Typography>
-      </Box>
+
+      <Divider sx={{ mb: { xs: 3, sm: 4 } }} />
+
+      <ProjectOverview sections={caseStudy.sections} />
+      <ProjectMetrics metrics={caseStudy.metrics} />
+      <ProjectLinks links={caseStudy.links} />
+
+      <Divider sx={{ my: { xs: 2, sm: 3 } }} />
+
+      <ProjectTechStack techStack={caseStudy.techStack} />
     </Paper>
   );
 }

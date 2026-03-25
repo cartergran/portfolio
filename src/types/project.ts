@@ -1,0 +1,44 @@
+export type ProjectSlug =
+  | 'financial-analytics-dashboard'
+  | 'daily-puzzle-game'
+  | 'react-islands';
+
+export interface ProjectLink {
+  label: string;
+  url: string;
+  kind: 'demo' | 'repo' | 'article' | 'other';
+}
+
+export interface ProjectMetric {
+  label: string;
+  value: string;
+  unit?: string;
+}
+
+export type CaseStudySectionKind =
+  | 'overview'
+  | 'problem'
+  | 'approach'
+  | 'challenges'
+  | 'implementation'
+  | 'impact';
+
+export interface CaseStudySection {
+  kind: CaseStudySectionKind;
+  heading: string;
+  body: string;
+}
+
+export interface TechDetail {
+  name: string;
+  role: string;
+}
+
+export interface ProjectCaseStudy {
+  sections: readonly CaseStudySection[];
+  metrics: readonly ProjectMetric[];
+  links: readonly ProjectLink[];
+  techStack: readonly TechDetail[];
+}
+
+export type CaseStudyMap = Record<ProjectSlug, ProjectCaseStudy>;
