@@ -12,8 +12,9 @@ export function HomePage() {
     const hash = window.location.hash.replace('#', '');
     if (!hash) return;
 
+    const sectionId = hash.split('/')[0];
     requestAnimationFrame(() => {
-      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     });
   }, []);
 

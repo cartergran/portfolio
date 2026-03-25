@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Collapse from '@mui/material/Collapse';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useMatch, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { SectionHeading } from '../common/SectionHeading';
 import { ProjectCard } from './ProjectCard';
 import { ProjectDetail } from './ProjectDetail';
@@ -18,11 +18,16 @@ const FADE_SX = {
   },
 } as const;
 
+function slugFromHash(hash: string): string | null {
+  const raw = hash.replace('#', '');
+  return raw.startsWith('projects/') ? raw.slice('projects/'.length) : null;
+}
+
 export function ProjectGrid() {
   const { ref, inView } = useInView({ threshold: 0.05 });
   const navigate = useNavigate();
-  const match = useMatch('/projects/:slug');
-  const expandedSlug = match?.params.slug ?? null;
+  const location = useLocation();
+  const expandedSlug = slugFromHash(location.hash);
 
   const [collapsingSlug, setCollapsingSlug] = useState<string | null>(null);
   const prevExpandedRef = useRef(expandedSlug);
@@ -44,7 +49,7 @@ export function ProjectGrid() {
       if (expandedSlug === slug) {
         navigate('/#projects');
       } else {
-        navigate(`/projects/${slug}`);
+        navigate(`/#projects/${slug}`);
       }
     },
     [expandedSlug, navigate],
@@ -103,7 +108,10 @@ export function ProjectGrid() {
             onExited={() => handleCollapseExited(project.slug)}
           >
             <Box id={`project-detail-${project.slug}`} sx={{ pt: 3 }}>
-              <ProjectDetail project={project} onClose={() => navigate('/#projects')} />
+              <ProjectDetail
+                project={project}
+                onClose={() => navigate('/#projects')}
+              />
             </Box>
           </Collapse>
         );

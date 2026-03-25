@@ -58,6 +58,8 @@ export function useActiveSection(sectionIds: string[]): string | null {
     if (activeId === null) return;
 
     const timeout = setTimeout(() => {
+      const currentHash = window.location.hash.replace('#', '');
+      if (currentHash.startsWith(`${activeId}/`)) return;
       window.history.replaceState(null, '', `#${activeId}`);
     }, 100);
 
