@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import { ProjectTechStack } from './detail/ProjectTechStack';
+import { TechStack } from './detail/TechStack';
 import type { Experience } from '../../types/experience';
 
 interface ExperienceCardProps {
@@ -64,10 +64,10 @@ export function ExperienceCard({ experience }: ExperienceCardProps) {
             </Typography>
           </Stack>
         </CardContent>
+        <Box sx={{ px: { xs: 2.5, sm: 3 }, pb: { xs: 2.5, sm: 3 } }}>
+          <TechStack techStack={experience.techStack} />
+        </Box>
       </CardActionArea>
-      <Box sx={{ px: { xs: 2.5, sm: 3 }, pb: { xs: 2.5, sm: 3 } }}>
-        <ProjectTechStack techStack={experience.techStack} />
-      </Box>
     </Card>
   );
 }

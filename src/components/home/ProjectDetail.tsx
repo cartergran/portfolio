@@ -8,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { ProjectOverview } from './detail/ProjectOverview';
 import { ProjectMetrics } from './detail/ProjectMetrics';
 import { ProjectLinks } from './detail/ProjectLinks';
-import { ProjectTechStack } from './detail/ProjectTechStack';
+import { TechStack } from './detail/TechStack';
 import type { FeaturedProject } from '../../data/projects';
 
 interface ProjectDetailProps {
@@ -75,7 +75,7 @@ export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
 
       <Divider sx={{ my: { xs: 2, sm: 3 } }} />
 
-      <ProjectTechStack techStack={caseStudy.techStack} />
+      <TechStack techStack={caseStudy.techStack} />
     </Paper>
   );
 }

@@ -5,11 +5,11 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import type { TechDetail } from '../../../types/tech';
 
-interface ProjectTechStackProps {
+interface TechStackProps {
   techStack: readonly TechDetail[];
 }
 
-export function ProjectTechStack({ techStack }: ProjectTechStackProps) {
+export function TechStack({ techStack }: TechStackProps) {
   if (techStack.length === 0) return null;
 
   return (
@@ -32,7 +32,6 @@ export function ProjectTechStack({ techStack }: ProjectTechStackProps) {
                 fontWeight: 500,
                 borderColor: 'divider',
                 color: 'text.secondary',
-                cursor: 'default',
                 '&:hover': {
                   borderColor: 'secondary.main',
                   color: 'secondary.main',
