@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { NAV_SECTIONS } from '../../app/theme';
 import { useActiveSection } from '../../hooks/useActiveSection';
+import { useScrollToSection } from '../../hooks/useScrollToSection';
 
 const SECTION_IDS = NAV_SECTIONS.map((s) => s.id);
 
@@ -12,17 +13,9 @@ const SHORT_LABELS: Record<string, string> = {
   projects: 'Projects',
 };
 
-function scrollToSection(id: string) {
-  if (id === SECTION_IDS[0]) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  }
-  window.history.replaceState(null, '', `#${id}`);
-}
-
 export function MobileTopBar() {
   const activeSection = useActiveSection(SECTION_IDS);
+  const scrollToSection = useScrollToSection(SECTION_IDS);
 
   return (
     <Box

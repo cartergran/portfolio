@@ -6,17 +6,18 @@ import { AboutSection } from '../components/home/AboutSection';
 import { ExperienceSection } from '../components/home/ExperienceSection';
 import { ProjectGrid } from '../components/home/ProjectGrid';
 import { SkillsStrip } from '../components/home/SkillsStrip';
+import { useScrollToSection } from '../hooks/useScrollToSection';
 
 export function HomePage() {
+  const scrollToSection = useScrollToSection();
+
   useEffect(() => {
     const hash = window.location.hash.replace('#', '');
     if (!hash) return;
 
     const sectionId = hash.split('/')[0];
-    requestAnimationFrame(() => {
-      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    });
-  }, []);
+    requestAnimationFrame(() => scrollToSection(sectionId));
+  }, [scrollToSection]);
 
   return (
     <PageContainer>

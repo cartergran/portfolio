@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { useInView } from '../../hooks/useInView';
+import { useScrollToSection } from '../../hooks/useScrollToSection';
 import { CTAButton } from '../common/CTAButton';
 
 const FADE_SX = {
@@ -16,6 +17,7 @@ const FADE_SX = {
 
 export function HeroSection() {
   const { ref, inView } = useInView({ threshold: 0.05 });
+  const scrollToSection = useScrollToSection();
 
   return (
     <Box
@@ -57,11 +59,7 @@ export function HeroSection() {
           <CTAButton
             variant="contained"
             color="primary"
-            onClick={() => {
-              document
-                .getElementById('projects')
-                ?.scrollIntoView({ behavior: 'smooth' });
-            }}
+            onClick={() => scrollToSection('projects')}
           >
             View Projects
           </CTAButton>

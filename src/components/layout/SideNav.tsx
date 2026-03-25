@@ -10,20 +10,13 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { SIDE_NAV_WIDTH, NAV_SECTIONS } from '../../app/theme';
 import { useActiveSection } from '../../hooks/useActiveSection';
+import { useScrollToSection } from '../../hooks/useScrollToSection';
 
 const SECTION_IDS = NAV_SECTIONS.map((s) => s.id);
 
-function scrollToSection(id: string) {
-  if (id === SECTION_IDS[0]) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  }
-  window.history.replaceState(null, '', `#${id}`);
-}
-
 export function SideNav() {
   const activeSection = useActiveSection(SECTION_IDS);
+  const scrollToSection = useScrollToSection(SECTION_IDS);
 
   return (
     <Box
