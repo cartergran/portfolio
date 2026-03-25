@@ -13,6 +13,8 @@ export const NAV_SECTIONS: readonly NavSection[] = [
   { label: 'Projects', id: 'projects' },
 ] as const;
 
+export const NAV_SECTION_IDS = NAV_SECTIONS.map((s) => s.id);
+
 const baseTheme = createTheme({
   palette: {
     mode: 'light',
@@ -126,25 +128,6 @@ const baseTheme = createTheme({
       },
       defaultProps: {
         disableElevation: true,
-      },
-    },
-    MuiAppBar: {
-      defaultProps: {
-        elevation: 0,
-      },
-      styleOverrides: {
-        root: {
-          backgroundColor: 'rgba(255, 255, 255, 0.85)',
-          backdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(26, 26, 46, 0.08)',
-        },
-      },
-    },
-    MuiToolbar: {
-      styleOverrides: {
-        root: {
-          minHeight: 64,
-        },
       },
     },
   },

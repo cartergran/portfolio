@@ -1,8 +1,7 @@
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { useInView } from '../../hooks/useInView';
+import { FadeIn } from '../common/FadeIn';
 
 const SKILLS = [
   'React',
@@ -15,29 +14,12 @@ const SKILLS = [
   'Git',
 ] as const;
 
-const FADE_SX = {
-  '@media (prefers-reduced-motion: reduce)': {
-    opacity: 1,
-    transform: 'none',
-    transition: 'none',
-  },
-} as const;
-
 export function SkillsStrip() {
-  const { ref, inView } = useInView({ threshold: 0.1 });
-
   return (
-    <Box
+    <FadeIn
       component="section"
-      ref={ref}
-      sx={{
-        py: { xs: 4, sm: 6 },
-        opacity: inView ? 1 : 0,
-        transform: inView ? 'none' : 'translateY(16px)',
-        transition:
-          'opacity 0.5s ease-out 0.15s, transform 0.5s ease-out 0.15s',
-        ...FADE_SX,
-      }}
+      threshold={0.1}
+      sx={{ py: { xs: 4, sm: 6 } }}
     >
       <Typography
         variant="overline"
@@ -60,6 +42,6 @@ export function SkillsStrip() {
           />
         ))}
       </Stack>
-    </Box>
+    </FadeIn>
   );
 }

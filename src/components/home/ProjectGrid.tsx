@@ -5,18 +5,10 @@ import Collapse from '@mui/material/Collapse';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SectionHeading } from '../common/SectionHeading';
+import { FadeIn } from '../common/FadeIn';
 import { ProjectCard } from './ProjectCard';
 import { ProjectDetail } from './ProjectDetail';
 import { FEATURED_PROJECTS } from '../../data/projects';
-import { useInView } from '../../hooks/useInView';
-
-const FADE_SX = {
-  '@media (prefers-reduced-motion: reduce)': {
-    opacity: 1,
-    transform: 'none',
-    transition: 'none',
-  },
-} as const;
 
 function slugFromHash(hash: string): string | null {
   const raw = hash.replace('#', '');
@@ -24,7 +16,6 @@ function slugFromHash(hash: string): string | null {
 }
 
 export function ProjectGrid() {
-  const { ref, inView } = useInView({ threshold: 0.05 });
   const navigate = useNavigate();
   const location = useLocation();
   const expandedSlug = slugFromHash(location.hash);
@@ -66,17 +57,10 @@ export function ProjectGrid() {
   }, []);
 
   return (
-    <Box
+    <FadeIn
       component="section"
       id="projects"
-      ref={ref}
-      sx={{
-        py: { xs: 4, sm: 6 },
-        opacity: inView ? 1 : 0,
-        transform: inView ? 'none' : 'translateY(24px)',
-        transition: 'opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s',
-        ...FADE_SX,
-      }}
+      sx={{ py: { xs: 4, sm: 6 } }}
     >
       <SectionHeading
         title="Featured Work"
@@ -116,6 +100,6 @@ export function ProjectGrid() {
           </Collapse>
         );
       })}
-    </Box>
+    </FadeIn>
   );
 }

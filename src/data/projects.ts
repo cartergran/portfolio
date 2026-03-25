@@ -1,5 +1,5 @@
 import type { ProjectSlug, ProjectCaseStudy } from '../types/project';
-import { CASE_STUDIES } from '../content/projects';
+import { CASE_STUDIES } from './case-studies';
 
 export interface FeaturedProject {
   slug: ProjectSlug;

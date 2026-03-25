@@ -1,11 +1,9 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { NAV_SECTIONS } from '../../app/theme';
+import { NAV_SECTIONS, NAV_SECTION_IDS } from '../../app/theme';
 import { useActiveSection } from '../../hooks/useActiveSection';
 import { useScrollToSection } from '../../hooks/useScrollToSection';
-
-const SECTION_IDS = NAV_SECTIONS.map((s) => s.id);
 
 const SHORT_LABELS: Record<string, string> = {
   about: 'About',
@@ -14,8 +12,8 @@ const SHORT_LABELS: Record<string, string> = {
 };
 
 export function MobileTopBar() {
-  const activeSection = useActiveSection(SECTION_IDS);
-  const scrollToSection = useScrollToSection(SECTION_IDS);
+  const activeSection = useActiveSection(NAV_SECTION_IDS);
+  const scrollToSection = useScrollToSection(NAV_SECTION_IDS);
 
   return (
     <Box

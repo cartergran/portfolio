@@ -8,15 +8,13 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { SIDE_NAV_WIDTH, NAV_SECTIONS } from '../../app/theme';
+import { SIDE_NAV_WIDTH, NAV_SECTIONS, NAV_SECTION_IDS } from '../../app/theme';
 import { useActiveSection } from '../../hooks/useActiveSection';
 import { useScrollToSection } from '../../hooks/useScrollToSection';
 
-const SECTION_IDS = NAV_SECTIONS.map((s) => s.id);
-
 export function SideNav() {
-  const activeSection = useActiveSection(SECTION_IDS);
-  const scrollToSection = useScrollToSection(SECTION_IDS);
+  const activeSection = useActiveSection(NAV_SECTION_IDS);
+  const scrollToSection = useScrollToSection(NAV_SECTION_IDS);
 
   return (
     <Box

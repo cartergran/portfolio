@@ -1,36 +1,16 @@
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { useInView } from '../../hooks/useInView';
 import { useScrollToSection } from '../../hooks/useScrollToSection';
 import { CTAButton } from '../common/CTAButton';
-
-const FADE_SX = {
-  '@media (prefers-reduced-motion: reduce)': {
-    opacity: 1,
-    transform: 'none',
-    transition: 'none',
-  },
-} as const;
+import { FadeIn } from '../common/FadeIn';
 
 export function HeroSection() {
-  const { ref, inView } = useInView({ threshold: 0.05 });
   const scrollToSection = useScrollToSection();
 
   return (
-    <Box
-      component="section"
-      ref={ref}
-      sx={{
-        py: { xs: 6, sm: 10, md: 14 },
-        opacity: inView ? 1 : 0,
-        transform: inView ? 'none' : 'translateY(24px)',
-        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-        ...FADE_SX,
-      }}
-    >
+    <FadeIn component="section" sx={{ py: { xs: 6, sm: 10, md: 14 } }}>
       <Stack spacing={3} sx={{ maxWidth: 640 }}>
         <Typography variant="h2" component="h1">
           Hi, I&rsquo;m Carter
@@ -81,6 +61,6 @@ export function HeroSection() {
           </CTAButton>
         </Stack>
       </Stack>
-    </Box>
+    </FadeIn>
   );
 }
