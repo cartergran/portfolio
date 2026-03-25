@@ -3,18 +3,20 @@ import Stack from '@mui/material/Stack';
 
 interface SectionHeadingProps {
   title: string;
+  headingId?: string;
   subtitle?: string;
   align?: 'left' | 'center';
 }
 
 export function SectionHeading({
   title,
+  headingId,
   subtitle,
   align = 'left',
 }: SectionHeadingProps) {
   return (
     <Stack spacing={1.5} sx={{ textAlign: align, mb: { xs: 4, sm: 6 } }}>
-      <Typography variant="h3" component="h2">
+      <Typography variant="h3" component="h2" id={headingId}>
         {title}
       </Typography>
       {subtitle && (

@@ -60,10 +60,12 @@ export function ProjectGrid() {
     <FadeIn
       component="section"
       id="projects"
+      aria-labelledby="projects-heading"
       sx={{ py: { xs: 4, sm: 6 } }}
     >
       <SectionHeading
         title="Featured Work"
+        headingId="projects-heading"
         subtitle="A selection of projects that showcase my approach to building software."
       />
       <Grid container spacing={3}>

@@ -8,6 +8,7 @@ interface FadeInProps {
   threshold?: number;
   component?: ElementType;
   id?: string;
+  'aria-labelledby'?: string;
   sx?: SxProps<Theme>;
 }
 
@@ -27,6 +28,7 @@ export function FadeIn({
   threshold = 0.05,
   component = 'div',
   id,
+  'aria-labelledby': ariaLabelledBy,
   sx,
 }: FadeInProps) {
   const { ref, inView } = useInView({ threshold });
@@ -36,6 +38,7 @@ export function FadeIn({
       ref={ref}
       component={component}
       id={id}
+      aria-labelledby={ariaLabelledBy}
       sx={{ ...fadeSx(inView), ...sx }}
     >
       {children}
