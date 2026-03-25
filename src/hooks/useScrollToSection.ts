@@ -28,7 +28,10 @@ export function useScrollToSection(sectionIds?: string[]) {
           el.getBoundingClientRect().top + window.scrollY - getScrollTopOffset();
         window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       }
-      window.history.replaceState(null, '', `#${id}`);
+      const currentHash = window.location.hash.replace('#', '');
+      if (currentHash !== id && !currentHash.startsWith(`${id}/`)) {
+        window.history.replaceState(null, '', `#${id}`);
+      }
     },
     [firstId],
   );

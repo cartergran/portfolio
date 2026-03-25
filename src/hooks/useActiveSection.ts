@@ -1,9 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export function useActiveSection(sectionIds: string[]): string | null {
-  const [activeId, setActiveId] = useState<string | null>(
-    () => sectionIds[0] ?? null,
-  );
+  const [activeId, setActiveId] = useState<string | null>(() => {
+    const hash = window.location.hash.replace('#', '');
+    const sectionFromHash = hash.split('/')[0];
+    return sectionIds.includes(sectionFromHash)
+      ? sectionFromHash
+      : (sectionIds[0] ?? null);
+  });
   const entriesRef = useRef(new Map<string, IntersectionObserverEntry>());
   const firstId = sectionIds[0] ?? null;
 
@@ -59,7 +63,9 @@ export function useActiveSection(sectionIds: string[]): string | null {
 
     const timeout = setTimeout(() => {
       const currentHash = window.location.hash.replace('#', '');
-      if (currentHash.startsWith(`${activeId}/`)) return;
+      // Leave any sub-path (e.g. projects/slug) alone — it represents an
+      // intentional deep-link state that only explicit navigation should clear.
+      if (currentHash.includes('/')) return;
       window.history.replaceState(null, '', `#${activeId}`);
     }, 100);
 
