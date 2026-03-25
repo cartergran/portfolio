@@ -14,7 +14,11 @@ import { useActiveSection } from '../../hooks/useActiveSection';
 const SECTION_IDS = NAV_SECTIONS.map((s) => s.id);
 
 function scrollToSection(id: string) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  if (id === SECTION_IDS[0]) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
   window.history.replaceState(null, '', `#${id}`);
 }
 

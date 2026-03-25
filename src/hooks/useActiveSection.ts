@@ -1,8 +1,26 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export function useActiveSection(sectionIds: string[]): string | null {
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(
+    () => sectionIds[0] ?? null,
+  );
   const entriesRef = useRef(new Map<string, IntersectionObserverEntry>());
+  const firstId = sectionIds[0] ?? null;
+
+  const resolveActive = useCallback(() => {
+    if (window.scrollY < 100) {
+      setActiveId(firstId);
+      return;
+    }
+
+    const intersecting = Array.from(entriesRef.current.values())
+      .filter((e) => e.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+    if (intersecting.length > 0) {
+      setActiveId(intersecting[0].target.id);
+    }
+  }, [firstId]);
 
   useEffect(() => {
     const elements = sectionIds
@@ -16,36 +34,31 @@ export function useActiveSection(sectionIds: string[]): string | null {
         for (const entry of entries) {
           entriesRef.current.set(entry.target.id, entry);
         }
-
-        const intersecting = Array.from(entriesRef.current.values())
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-        if (intersecting.length > 0) {
-          setActiveId(intersecting[0].target.id);
-        } else if (window.scrollY < 100) {
-          setActiveId(null);
-        }
+        resolveActive();
       },
       {
         root: null,
-        rootMargin: '-20% 0px -60% 0px',
+        rootMargin: '-10% 0px -60% 0px',
         threshold: 0,
       },
     );
 
     elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [sectionIds]);
+
+    const handleScroll = () => resolveActive();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sectionIds, resolveActive]);
 
   useEffect(() => {
     if (activeId === null) return;
 
     const timeout = setTimeout(() => {
-      const target = activeId
-        ? `#${activeId}`
-        : window.location.pathname;
-      window.history.replaceState(null, '', target);
+      window.history.replaceState(null, '', `#${activeId}`);
     }, 100);
 
     return () => clearTimeout(timeout);
