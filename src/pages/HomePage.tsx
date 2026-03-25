@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { PageContainer } from '../components/layout/PageContainer';
 import { HeroSection } from '../components/home/HeroSection';
-import { ContentSection } from '../components/home/ContentSection';
+import { AboutSection } from '../components/home/AboutSection';
+import { ExperienceSection } from '../components/home/ExperienceSection';
 import { ProjectGrid } from '../components/home/ProjectGrid';
 import { SkillsStrip } from '../components/home/SkillsStrip';
 import { useScrollToSection } from '../hooks/useScrollToSection';
@@ -24,16 +25,8 @@ export function HomePage() {
         <HeroSection />
       </Box>
 
-      <ContentSection
-        id="about"
-        heading="About"
-        body="This page will tell my story. Content coming soon."
-      />
-      <ContentSection
-        id="experience"
-        heading="Experience"
-        body="Professional experience details coming soon."
-      />
+      <AboutSection />
+      <ExperienceSection />
       <ProjectGrid />
       <SkillsStrip />
     </PageContainer>

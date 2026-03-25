@@ -29,10 +29,9 @@ export interface CaseStudySection {
   body: string;
 }
 
-export interface TechDetail {
-  name: string;
-  role: string;
-}
+import type { TechDetail } from './tech';
+
+export type { TechDetail } from './tech';
 
 export interface ProjectCaseStudy {
   sections: readonly CaseStudySection[];
