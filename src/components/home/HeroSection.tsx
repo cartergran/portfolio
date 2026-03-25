@@ -2,13 +2,10 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { useScrollToSection } from '../../hooks/useScrollToSection';
 import { CTAButton } from '../common/CTAButton';
 import { FadeIn } from '../common/FadeIn';
 
 export function HeroSection() {
-  const scrollToSection = useScrollToSection();
-
   return (
     <FadeIn component="section" sx={{ py: { xs: 6, sm: 10, md: 14 } }}>
       <Stack spacing={3} sx={{ maxWidth: 640 }}>
@@ -36,13 +33,6 @@ export function HeroSection() {
           spacing={1.5}
           sx={{ pt: 1 }}
         >
-          <CTAButton
-            variant="contained"
-            color="primary"
-            onClick={() => scrollToSection('projects')}
-          >
-            View Projects
-          </CTAButton>
           <CTAButton
             href="https://github.com"
             variant="outlined"
