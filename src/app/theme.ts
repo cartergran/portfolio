@@ -1,5 +1,18 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
+export const SIDE_NAV_WIDTH = 240;
+
+export interface NavSection {
+  label: string;
+  id: string;
+}
+
+export const NAV_SECTIONS: readonly NavSection[] = [
+  { label: 'About', id: 'about' },
+  { label: 'Experience', id: 'experience' },
+  { label: 'Projects', id: 'projects' },
+] as const;
+
 const baseTheme = createTheme({
   palette: {
     mode: 'light',

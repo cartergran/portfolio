@@ -19,7 +19,7 @@ export function PageContainer({
       component="main"
       sx={{
         flexGrow: 1,
-        py: { xs: 4, sm: 6, md: 8 },
+        py: { xs: 2, sm: 3, md: 4 },
       }}
     >
       <Container maxWidth={maxWidth} disableGutters={disableGutters}>

@@ -42,7 +42,7 @@ export function ProjectGrid() {
   const handleToggle = useCallback(
     (slug: string) => {
       if (expandedSlug === slug) {
-        navigate('/');
+        navigate('/#projects');
       } else {
         navigate(`/projects/${slug}`);
       }
@@ -103,7 +103,7 @@ export function ProjectGrid() {
             onExited={() => handleCollapseExited(project.slug)}
           >
             <Box id={`project-detail-${project.slug}`} sx={{ pt: 3 }}>
-              <ProjectDetail project={project} onClose={() => navigate('/')} />
+              <ProjectDetail project={project} onClose={() => navigate('/#projects')} />
             </Box>
           </Collapse>
         );

@@ -1,6 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomePage } from '../pages/HomePage';
-import { AboutPage } from '../pages/AboutPage';
 import { NotFoundPage } from '../pages/NotFoundPage';
 
 export function AppRoutes() {
@@ -8,7 +7,7 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/projects/:slug" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />
+      <Route path="/about" element={<Navigate to="/#about" replace />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

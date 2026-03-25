@@ -1,33 +1,28 @@
-import { useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
-import { TopNav } from '../components/layout/TopNav';
-import { MobileNav } from '../components/layout/MobileNav';
+import { SideNav } from '../components/layout/SideNav';
+import { MobileTopBar } from '../components/layout/MobileTopBar';
 import { Footer } from '../components/layout/Footer';
 import { AppRoutes } from './routes';
+import { SIDE_NAV_WIDTH } from './theme';
 
 export function App() {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
-  const handleMobileMenuOpen = useCallback(() => {
-    setMobileNavOpen(true);
-  }, []);
-
-  const handleMobileMenuClose = useCallback(() => {
-    setMobileNavOpen(false);
-  }, []);
-
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
-      }}
-    >
-      <TopNav onMobileMenuOpen={handleMobileMenuOpen} />
-      <MobileNav open={mobileNavOpen} onClose={handleMobileMenuClose} />
-      <AppRoutes />
-      <Footer />
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <SideNav />
+
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          ml: { xs: 0, md: `${SIDE_NAV_WIDTH}px` },
+          minHeight: '100vh',
+        }}
+      >
+        <MobileTopBar />
+        <AppRoutes />
+        <Footer />
+      </Box>
     </Box>
   );
 }
