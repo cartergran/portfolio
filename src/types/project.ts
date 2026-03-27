@@ -1,7 +1,7 @@
 export type ProjectSlug =
-  | 'financial-analytics-dashboard'
-  | 'daily-puzzle-game'
-  | 'react-islands';
+  | 'panorama'
+  | 'imagine'
+  | 'spotify-lounge';
 
 export interface ProjectLink {
   label: string;

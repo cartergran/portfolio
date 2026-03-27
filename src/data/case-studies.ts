@@ -1,177 +1,167 @@
 import type { CaseStudyMap } from '../types/project';
 
 export const CASE_STUDIES: CaseStudyMap = {
-  'financial-analytics-dashboard': {
+  'panorama': {
     sections: [
       {
         kind: 'overview',
         heading: 'Overview',
-        body: 'A full-stack financial analytics dashboard that transforms raw transaction and market data into actionable visual insights. The system handles structured data ingestion, aggregation pipelines, and real-time charting — with an LLM-powered natural-language query layer that lets users ask questions about their data without writing filters by hand.',
+        body: 'Panorama is a private investment portfolio platform that brings Robinhood-style transparency to the private markets. Family offices and wealth managers upload quarterly investor reports from their private equity, private debt, and venture capital fund managers. The platform extracts structured investment data from those documents and presents it to investors as a clean, drillable portfolio view. It applies the same mental model as a public brokerage app to an asset class that has never had it.',
       },
       {
         kind: 'problem',
         heading: 'Problem',
-        body: 'Financial data is inherently high-volume and multi-dimensional. Users needed to slice portfolios by time range, asset class, and custom tags — but existing tools forced them through rigid filter UIs or required SQL knowledge. Rendering thousands of data points on the client also introduced visible jank, especially on mid-range devices.',
+        body: 'Investors in private funds receive a ~20-page quarterly PDF from each fund manager. Buried inside is a schedule of investments covering 50 to 100 individual positions: what each was bought for, what it is worth now, and a handful of other figures. To compare performance quarter-over-quarter, an investor has to open two PDFs side by side and manually match every line. Multiply that by multiple funds and multiple quarters and it becomes a serious transparency problem. There is no equivalent of toggling "1-month" or "3-month" on a stock chart. The data simply does not exist in a usable form.',
       },
       {
         kind: 'approach',
         heading: 'Approach',
-        body: 'I designed a strict schema for financial records up front, making every field typed and every aggregation query predictable. On the frontend, I chose a virtualized charting strategy: only the visible viewport\'s data points are rendered, with pre-aggregated summaries for zoomed-out views. For the natural-language layer, I integrated an LLM to translate plain-English questions into structured filter objects — keeping the model\'s role narrow and deterministic rather than open-ended.',
+        body: 'I designed the product from the investor\'s existing mental model: they already understand what a public brokerage portfolio looks like. The goal was to replicate that experience exactly, showing total portfolio value over time, a list of funds beneath it, and the ability to drill into any fund and see its underlying investments, all populated with private market data. The family office sits in the middle: they upload the documents, the platform does the extraction, and their investors see the result without ever touching a PDF.',
       },
       {
         kind: 'challenges',
         heading: 'Challenges',
-        body: 'The biggest tension was between query flexibility and performance. Arbitrary date-range and tag combinations could produce expensive aggregations, so I introduced a tiered caching strategy — pre-computed daily rollups with on-demand drill-down. On the LLM side, prompt reliability was a concern; I constrained the model\'s output to a strict JSON schema and added validation to reject malformed queries gracefully.',
+        body: 'Quarterly investor reports have no enforced standard format. The structure, layout, and level of detail varies significantly across fund managers. Extracting structured investment figures reliably across that variation was the core technical challenge. A second challenge was making time-series charts feel meaningful from data that only updates four times a year. The UI needed to communicate sparse data honestly without making the product feel empty between quarters.',
       },
       {
         kind: 'implementation',
         heading: 'Implementation',
-        body: 'The data layer uses TypeScript interfaces mirroring the database schema, so type mismatches surface at compile time rather than runtime. Charts are built with D3.js for fine-grained control over rendering and transitions. The LLM integration sits behind a thin API route that validates both input and output, treating the model as a structured translator rather than a freeform assistant. Material UI provides the component system, with a responsive grid that adapts from a dense desktop layout to a single-column mobile view.',
+        body: 'The platform has two distinct sides. On the family office side, document upload triggers a parsing pipeline: the PDF is stored in S3, a presigned URL is generated and sent to Claude, and the extracted investment figures are validated and written to a MySQL database via an Express API. On the investor side, a React app presents a two-panel layout with a time-series chart on top and a scrollable list of funds or investments below. Every screen supports a toggle to flip the two panels so the list moves to the top and the chart expands to show all positions overlaid. A secondary toggle lets users switch between value metrics (total value, invested capital, gain) across all views. Family offices can also create per-investor statements that slice their fund-level data down to each client\'s proportional stake.',
       },
       {
         kind: 'impact',
         heading: 'Impact',
-        body: 'The natural-language query layer reduced the average time-to-insight from minutes of manual filtering to a single typed question. Virtualized rendering eliminated frame drops on data sets exceeding 10,000 points. The strict schema approach caught multiple data-shape bugs during development that would have been runtime errors in a loosely typed system.',
+        body: 'Panorama eliminates a workflow that previously required opening multiple PDFs and manually reconciling around 75 line items per fund per quarter. For family offices, it becomes a differentiator that offers their investors a level of transparency most competitors do not provide. For investors, the result is the same intuitive experience they already have with public markets, now extended to the private side of their portfolio.',
       },
     ],
     metrics: [
-      { label: 'Data points rendered', value: '10,000+', unit: 'without jank' },
-      { label: 'Query-to-insight time', value: '~3s', unit: 'via NL query' },
-      { label: 'Schema coverage', value: '100%', unit: 'typed end-to-end' },
+      { label: 'Investments per fund', value: '50-100', unit: 'tracked per quarter' },
+      { label: 'Manual reconciliation', value: '0', unit: 'PDF comparisons needed' },
+      { label: 'Data source', value: 'Quarterly PDFs', unit: 'auto-extracted' },
     ],
     links: [
       {
-        label: 'Live Demo',
-        url: 'https://github.com',
-        kind: 'demo',
-      },
-      {
         label: 'Source Code',
-        url: 'https://github.com',
+        url: 'https://github.com/cartergran/panorama',
         kind: 'repo',
       },
     ],
     techStack: [
-      { name: 'React', role: 'UI framework and component architecture' },
-      { name: 'TypeScript', role: 'End-to-end type safety across data pipeline' },
-      { name: 'D3.js', role: 'Custom virtualized chart rendering' },
-      { name: 'Material UI', role: 'Design system and responsive layout' },
-      { name: 'OpenAI API', role: 'Natural-language to structured-query translation' },
-      { name: 'Node.js', role: 'API layer with schema validation' },
+      { name: 'React', role: 'Investor-facing portfolio and fund views' },
+      { name: 'Express', role: 'REST API for document ingestion and data access' },
+      { name: 'MySQL', role: 'Structured storage for investment and fund data' },
+      { name: 'Claude (Anthropic)', role: 'PDF extraction and investment data parsing' },
+      { name: 'AWS S3', role: 'PDF storage and presigned URL generation for document processing' },
     ],
   },
 
-  'daily-puzzle-game': {
+  'imagine': {
     sections: [
       {
         kind: 'overview',
         heading: 'Overview',
-        body: 'A browser-based daily puzzle game that gives every player the same challenge each day. Built entirely before incorporating any AI tooling, this project is grounded in careful interaction design — hinting systems, streak mechanics, and shareable results that keep players coming back.',
+        body: 'Imagine is a daily image-guessing puzzle game built as a full-stack TypeScript application. Each day, a single image is hidden behind an 8x8 grid of tiles. Players reveal tiles across up to 5 attempts to identify the hidden subject, first guessing the category and then committing to a specific answer. The image starts heavily pixelated and becomes clearer with each reveal, rewarding players who solve it with the fewest tiles uncovered.',
       },
       {
         kind: 'problem',
         heading: 'Problem',
-        body: 'Most casual puzzle games either bore players with repetitive mechanics or overwhelm them with complexity. The challenge was designing a game loop tight enough for a two-minute session but satisfying enough to build a daily habit — without relying on notifications or dark patterns to drive retention.',
+        body: 'Daily puzzle games live or die on the strength of their core loop. The challenge was building something with genuine visual deduction at its center rather than word recall or trivia, while keeping sessions short enough to complete in a few minutes and compelling enough to return to the next day. The leaderboard also had to be fair and manipulation-resistant without requiring user accounts or logins.',
       },
       {
         kind: 'approach',
         heading: 'Approach',
-        body: 'I started from the player experience backward: what does a single session feel like? The core loop is discover → attempt → feedback → resolve. Each puzzle is seeded from the date so every player gets the same challenge. Difficulty is tuned per day-of-week, with gentler puzzles on Monday and harder ones by Friday. The hint system reveals information progressively, rewarding persistence over guessing.',
+        body: 'I designed the game around a two-phase guessing structure: commit to a category first, then guess the specific subject. This gives players a meaningful intermediate step and makes the difficulty feel progressive rather than all-or-nothing. The scoring system rewards restraint. Every tile left unrevealed earns points, so the optimal strategy is to solve as early as possible with as few reveals as possible. The maximum score is 314.',
       },
       {
         kind: 'challenges',
         heading: 'Challenges',
-        body: 'Balancing hint generosity was the hardest design problem. Too few hints and players churn after a bad day; too many and the puzzle loses tension. I settled on a three-tier system — a nudge, a partial reveal, and a strong hint — each costing one point from the player\'s score. Streak tracking also needed careful handling around timezones and midnight boundaries to feel fair globally.',
+        body: 'Server-side image processing was the most complex engineering problem. Pre-generating multiple pixelation levels and pre-cropping every tile into a 3D catalog at server startup required careful management of memory and startup time. Leaderboard writes needed to be concurrency-safe without a traditional database, which I solved using GCS generation numbers for optimistic locking with automatic retry. Automating daily puzzle rotation fully meant reliably coordinating a cron job, a GCS file initialization, and a Heroku dyno restart in sequence every night at midnight.',
       },
       {
         kind: 'implementation',
         heading: 'Implementation',
-        body: 'The game state lives entirely in the browser via LocalStorage, with a compact serialization format that survives page reloads without a backend. Animations are CSS-driven with spring-style easing for tile flips and reveals, adding tactile feedback without JavaScript overhead. The share feature generates a spoiler-free emoji grid — similar to Wordle\'s pattern — that players can paste into messages. All game logic runs client-side with deterministic seeding, so there\'s no server to maintain.',
+        body: 'The server downloads puzzle images from Google Cloud Storage at startup, generates pixelation levels using Jimp, and pre-crops all 64 tiles into a 3D base64 catalog indexed by attempt, row, and column. Tiles are served individually on demand. Category and solution validation happen server-side so answers are never exposed to the client, and scores are verified from game logs before any leaderboard submission. A node-schedule cron job at midnight EST increments the puzzle number, initializes a fresh scores file in GCS, patches the Heroku config var, and restarts the dyno, making the daily content cycle fully hands-off. Players can share a color-coded emoji grid of their results, similar to Wordle.',
       },
       {
         kind: 'impact',
         heading: 'Impact',
-        body: 'The daily engagement loop and shareable results drove organic word-of-mouth growth. The progressive hint system kept completion rates high without trivializing the puzzles. Building without AI tooling forced every interaction detail to be considered deliberately, resulting in a polished UX that feels handcrafted.',
+        body: 'The automated rotation system delivers a new puzzle every day with zero manual intervention. Server-side answer validation keeps the game fair without requiring accounts. The scoring model rewards improvement over time, giving returning players a reason to keep coming back beyond simply finishing the daily challenge.',
       },
     ],
     metrics: [
-      { label: 'Session length', value: '~2 min', unit: 'average' },
-      { label: 'Hint tiers', value: '3', unit: 'progressive reveals' },
-      { label: 'Backend required', value: 'None', unit: 'fully client-side' },
+      { label: 'Grid size', value: '8x8', unit: '64 tiles per puzzle' },
+      { label: 'Max score', value: '314', unit: 'points' },
+      { label: 'Daily rotation', value: 'Automated', unit: 'zero manual steps' },
     ],
     links: [
       {
         label: 'Play It',
-        url: 'https://github.com',
+        url: 'https://whynotimagine.com/',
         kind: 'demo',
       },
       {
         label: 'Source Code',
-        url: 'https://github.com',
+        url: 'https://github.com/cartergran/imagine',
         kind: 'repo',
       },
     ],
     techStack: [
-      { name: 'React', role: 'Component architecture and state management' },
-      { name: 'TypeScript', role: 'Game logic type safety and puzzle seeding' },
-      { name: 'CSS Animations', role: 'Tile flips, reveals, and spring-style transitions' },
-      { name: 'LocalStorage', role: 'Persistent game state without a backend' },
-      { name: 'Date-seeded RNG', role: 'Deterministic daily puzzle generation' },
+      { name: 'React 19', role: 'Game UI, tile interaction, and two-phase guess flow' },
+      { name: 'Express', role: 'API server with server-side validation and tile delivery' },
+      { name: 'Jimp', role: 'Server-side image pixelation and tile pre-generation' },
+      { name: 'Google Cloud Storage', role: 'Puzzle images, metadata, and daily score files' },
+      { name: 'node-schedule', role: 'Automated midnight puzzle rotation and dyno restart' },
     ],
   },
 
-  'react-islands': {
+  'spotify-lounge': {
     sections: [
       {
         kind: 'overview',
         heading: 'Overview',
-        body: 'A progressive modernization strategy for embedding React components as self-contained "islands" inside a large legacy jQuery application. Rather than a risky full rewrite, this architecture lets teams ship modern UI incrementally — one component at a time — while the existing jQuery code continues to run unchanged around it.',
+        body: 'Spotify Lounge is a UX concept designed in 2017 to improve music discovery through social listening. The concept centers on a virtual lounge: a shared room where any Spotify user can connect, listen to the same song in real time, vote on a collaborative queue, and discover new music through the people they follow. The concept predates Spotify\'s own Jams feature by several years and arrived at nearly the same solution independently.',
       },
       {
         kind: 'problem',
         heading: 'Problem',
-        body: 'The legacy application had years of jQuery-driven UI with tightly coupled DOM manipulation, global event handlers, and no component boundaries. A full React rewrite would have taken months and frozen feature development. Meanwhile, new feature requests demanded richer interactions that were painful to build in jQuery — modals with complex state, dynamic forms, and real-time updates.',
+        body: 'Spotify\'s discovery features surfaced mainstream music users already knew. More telling, user research revealed that Spotify\'s built-in sharing feature was barely used. People shared music through entirely unconventional channels instead. The core problem was social: music discovery is deeply tied to sharing, but Spotify offered no interactive way to experience music together. There was no mechanism to say "listen to this right now, with me."',
       },
       {
         kind: 'approach',
         heading: 'Approach',
-        body: 'I designed a mount/unmount protocol that treats each React component as an island: it owns a specific DOM node, renders into it on demand, and cleans up completely when removed. The jQuery code doesn\'t need to know React exists — it just manages container elements. A thin bridge layer handles data passing via DOM attributes and custom events, keeping the two worlds decoupled.',
+        body: 'I started with four user interviews to test the hypothesis that Spotify\'s recommendations and sharing were the bottleneck for discovery. What I found reframed the problem: the real gap was the absence of a shared, real-time listening experience. From there, I ran a brainstorming session that produced six candidate features across three problem spaces: face-to-face sharing, online community, and personalized discovery. Guerrilla testing narrowed the field to one: the Lounge.',
       },
       {
         kind: 'challenges',
         heading: 'Challenges',
-        body: 'Idempotency was the core engineering constraint. jQuery code could re-render page sections at any time, destroying and recreating container nodes. Every island mount had to be safe to call repeatedly — detecting whether it was already mounted, cleaning up stale instances, and re-mounting cleanly. Memory leaks from orphaned React roots were a real risk that required explicit teardown hooks tied to jQuery\'s DOM lifecycle.',
+        body: 'The core design challenge was balancing democratic control with a coherent listening experience. Letting anyone in the lounge influence the queue risked chaos, but giving the leader total control reduced the social value of the feature. The solution was a vote-ranked queue: anyone could add songs or like existing ones, and the order updated dynamically based on the crowd\'s preferences. A second challenge emerged during user testing: participants couldn\'t tell who else was in the lounge, which undercut the social dimension entirely. This led to an overlay design showing connected users and their profiles.',
       },
       {
         kind: 'implementation',
         heading: 'Implementation',
-        body: 'Each island is registered with a manifest that maps a CSS selector to a React component and its props contract. A MutationObserver watches for container elements appearing in the DOM and auto-mounts the corresponding island. Unmounting hooks into jQuery\'s remove and empty events to trigger React root cleanup. Webpack bundles each island as a separate chunk, so the legacy app only loads the JavaScript it needs. TypeScript enforces the props contract between the jQuery data attributes and the React component interface.',
+        body: 'I designed three distinct entry points into the Lounge from the Spotify home screen, prioritizing quick access without displacing existing features. Medium-fidelity wireframes established the core layout: current track, upcoming queue, and interaction controls on a single screen. These were translated to high-fidelity mockups in Sketch using Spotify\'s existing visual language, then linked into an interactive prototype in InVision. User tests surfaced the social visibility gap, which led to a second design iteration adding a slide-out overlay with the connected users list and tap-through to their profiles. A preview mechanic let users hold down any queued song to hear a short sample on their own device without interrupting the lounge.',
       },
       {
         kind: 'impact',
         heading: 'Impact',
-        body: 'The team shipped new React-powered features within the existing release cycle, with zero jQuery regressions. The island pattern became the standard approach for all new UI work, creating a natural migration path. Over time, the ratio of React to jQuery code shifted steadily — without ever requiring a feature freeze or a big-bang rewrite.',
+        body: 'Spotify released Jams in 2022, a collaborative listening feature with nearly identical mechanics: real-time sync, a shared queue, and a host-controlled room that friends can join. The Lounge concept arrived at the same product answer five years earlier through independent research and design. The overlap validates the underlying user need: people want to share the experience of listening, not just the link to a song.',
       },
     ],
     metrics: [
-      { label: 'Migration strategy', value: 'Incremental', unit: 'zero downtime' },
-      { label: 'jQuery regressions', value: '0', unit: 'during rollout' },
-      { label: 'Bundle strategy', value: 'Per-island', unit: 'code-split chunks' },
+      { label: 'Research participants', value: '4', unit: 'user interviews' },
+      { label: 'Features prototyped', value: '6', unit: 'narrowed to 1' },
+      { label: 'Years before Spotify Jams', value: '5', unit: 'independent concept' },
     ],
     links: [
       {
-        label: 'Source Code',
-        url: 'https://github.com',
-        kind: 'repo',
+        label: 'Read the Case Study',
+        url: 'https://medium.com/@csg82/spotify-concept-design-for-discovery-4b21d0db441c',
+        kind: 'article',
       },
     ],
     techStack: [
-      { name: 'React', role: 'Island component rendering and lifecycle' },
-      { name: 'jQuery', role: 'Legacy host application and DOM management' },
-      { name: 'TypeScript', role: 'Props contracts between jQuery and React' },
-      { name: 'Webpack', role: 'Per-island code splitting and chunking' },
-      { name: 'MutationObserver', role: 'Auto-mount detection for dynamic DOM' },
-      { name: 'Custom Events', role: 'Decoupled bridge between jQuery and React' },
+      { name: 'Sketch', role: 'High-fidelity UI design and visual mockups' },
+      { name: 'InVision', role: 'Interactive prototype for user testing' },
     ],
   },
 };

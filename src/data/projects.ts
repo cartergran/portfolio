@@ -12,30 +12,30 @@ export interface FeaturedProject {
 
 export const FEATURED_PROJECTS: readonly FeaturedProject[] = [
   {
-    slug: 'financial-analytics-dashboard',
-    title: 'Financial Analytics Dashboard',
-    tagline: 'Real-time insights for smarter decisions',
+    slug: 'panorama',
+    title: 'Panorama',
+    tagline: 'Robinhood-style visibility for private investments',
     description:
-      'An interactive dashboard for visualizing financial data with dynamic charts, filterable views, and responsive layouts built for both desktop and mobile.',
-    tags: ['React', 'TypeScript', 'D3.js', 'Material UI'],
-    caseStudy: CASE_STUDIES['financial-analytics-dashboard'],
+      'A platform for family offices and wealth managers to ingest quarterly investor reports from private equity, debt, and VC funds. It extracts structured data so investors can track their private portfolios with the same ease as a public brokerage app.',
+    tags: ['React', 'Express', 'Claude', 'AWS S3', 'MySQL'],
+    caseStudy: CASE_STUDIES['panorama'],
   },
   {
-    slug: 'daily-puzzle-game',
-    title: 'Daily Puzzle Game',
-    tagline: 'A fresh challenge every day',
+    slug: 'imagine',
+    title: 'Imagine',
+    tagline: 'A daily image-guessing puzzle game',
     description:
-      'A browser-based puzzle game with daily challenges, streak tracking, and shareable results. Designed for quick, engaging play sessions.',
-    tags: ['React', 'TypeScript', 'CSS Animations', 'LocalStorage'],
-    caseStudy: CASE_STUDIES['daily-puzzle-game'],
+      'A daily puzzle game born out of years of playing them. Players reveal tiles on a pixelated 8x8 grid to identify a hidden image, with a two-phase guessing system, a daily leaderboard, and fully automated puzzle rotation.',
+    tags: ['TypeScript', 'React', 'Express', 'Google Cloud Storage', 'Jimp'],
+    caseStudy: CASE_STUDIES['imagine'],
   },
   {
-    slug: 'react-islands',
-    title: 'React Islands in Legacy jQuery UI',
-    tagline: 'Modern components in a legacy codebase',
+    slug: 'spotify-lounge',
+    title: 'Spotify Lounge',
+    tagline: 'A social listening concept that predated Spotify Jams',
     description:
-      'A progressive migration strategy embedding React components as islands within an existing jQuery application, enabling incremental modernization without full rewrites.',
-    tags: ['React', 'jQuery', 'TypeScript', 'Webpack'],
-    caseStudy: CASE_STUDIES['react-islands'],
+      'A UX concept designed in 2017 for a collaborative Spotify feature: a virtual lounge where users connect in real time, vote on a shared queue, and discover music through the people they follow. Spotify shipped a nearly identical feature five years later.',
+    tags: ['Sketch', 'InVision', 'UX Research', 'Product Design'],
+    caseStudy: CASE_STUDIES['spotify-lounge'],
   },
 ];
