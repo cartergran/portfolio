@@ -15,7 +15,7 @@ export function App() {
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',
-          ml: { xs: 0, md: `${SIDE_NAV_WIDTH}px` },
+          ml: { xs: 0, md: SIDE_NAV_WIDTH },
           minHeight: '100vh',
         }}
       >

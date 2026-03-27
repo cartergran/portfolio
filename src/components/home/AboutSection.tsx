@@ -6,7 +6,7 @@ import { ABOUT_CONTENT } from '../../data/about';
 export function AboutSection() {
   return (
     <FadeIn component="section" id="about" aria-labelledby="about-heading" sx={{ py: { xs: 4, sm: 6 } }}>
-      <Stack spacing={3} sx={{ maxWidth: 640 }}>
+      <Stack spacing={3}>
         <Typography variant="h3" component="h2" id="about-heading">
           {ABOUT_CONTENT.heading}
         </Typography>

@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-export const SIDE_NAV_WIDTH = 240;
+export const SIDE_NAV_WIDTH = '33.333vw';
 
 export interface NavSection {
   label: string;
