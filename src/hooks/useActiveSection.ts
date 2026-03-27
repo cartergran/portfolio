@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function useActiveSection(sectionIds: string[]): string | null {
@@ -10,7 +10,6 @@ export function useActiveSection(sectionIds: string[]): string | null {
       ? sectionFromHash
       : (sectionIds[0] ?? null);
   });
-  const entriesRef = useRef(new Map<string, IntersectionObserverEntry>());
   const firstId = sectionIds[0] ?? null;
 
   const resolveActive = useCallback(() => {
@@ -19,46 +18,30 @@ export function useActiveSection(sectionIds: string[]): string | null {
       return;
     }
 
-    const intersecting = Array.from(entriesRef.current.values())
-      .filter((e) => e.isIntersecting)
-      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    const refLine = window.innerHeight * 0.35;
+    let best: string | null = null;
+    let bestTop = -Infinity;
 
-    if (intersecting.length > 0) {
-      setActiveId(intersecting[0].target.id);
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const top = el.getBoundingClientRect().top;
+      if (top <= refLine && top > bestTop) {
+        best = id;
+        bestTop = top;
+      }
     }
-  }, [firstId]);
+
+    if (best) {
+      setActiveId(best);
+    }
+  }, [firstId, sectionIds]);
 
   useEffect(() => {
-    const elements = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
-
-    if (elements.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          entriesRef.current.set(entry.target.id, entry);
-        }
-        resolveActive();
-      },
-      {
-        root: null,
-        rootMargin: '-10% 0px -60% 0px',
-        threshold: 0,
-      },
-    );
-
-    elements.forEach((el) => observer.observe(el));
-
-    const handleScroll = () => resolveActive();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [sectionIds, resolveActive]);
+    resolveActive();
+    window.addEventListener('scroll', resolveActive, { passive: true });
+    return () => window.removeEventListener('scroll', resolveActive);
+  }, [resolveActive]);
 
   useEffect(() => {
     if (activeId === null) return;
