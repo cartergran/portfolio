@@ -50,7 +50,7 @@ export const CASE_STUDIES: CaseStudyMap = {
       { name: 'React', role: 'Investor-facing portfolio and fund views' },
       { name: 'Express', role: 'REST API for document ingestion and data access' },
       { name: 'MySQL', role: 'Structured storage for investment and fund data' },
-      { name: 'Claude (Anthropic)', role: 'PDF extraction and investment data parsing' },
+      { name: 'Claude', role: 'PDF extraction and investment data parsing' },
       { name: 'AWS S3', role: 'PDF storage and presigned URL generation for document processing' },
     ],
   },
@@ -106,11 +106,11 @@ export const CASE_STUDIES: CaseStudyMap = {
       },
     ],
     techStack: [
-      { name: 'React 19', role: 'Game UI, tile interaction, and two-phase guess flow' },
+      { name: 'TypeScript', role: 'End-to-end type safety across client and server' },
+      { name: 'React', role: 'Game UI, tile interaction, and two-phase guess flow' },
       { name: 'Express', role: 'API server with server-side validation and tile delivery' },
       { name: 'Jimp', role: 'Server-side image pixelation and tile pre-generation' },
       { name: 'Google Cloud Storage', role: 'Puzzle images, metadata, and daily score files' },
-      { name: 'node-schedule', role: 'Automated midnight puzzle rotation and dyno restart' },
     ],
   },
 
@@ -162,6 +162,8 @@ export const CASE_STUDIES: CaseStudyMap = {
     techStack: [
       { name: 'Sketch', role: 'High-fidelity UI design and visual mockups' },
       { name: 'InVision', role: 'Interactive prototype for user testing' },
+      { name: 'UX Research', role: 'User interviews and guerrilla testing to define and validate the concept' },
+      { name: 'Product Design', role: 'Concept definition, queue mechanics, and two rounds of design iteration' },
     ],
   },
 };

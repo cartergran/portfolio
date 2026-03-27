@@ -61,7 +61,7 @@ export function ProjectCard({
           <Typography variant="body2" color="text.secondary" sx={{ pb: 0.5 }}>
             {project.description}
           </Typography>
-          <TagList tags={project.tags} />
+          <TagList tags={project.caseStudy.techStack.map((t) => t.name)} />
         </Stack>
       </CardContent>
       <CardActions sx={{ px: { xs: 2.5, sm: 3 }, pb: 2.5, pt: 0 }}>
