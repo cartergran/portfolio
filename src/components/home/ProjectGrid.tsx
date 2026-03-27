@@ -22,11 +22,12 @@ export function ProjectGrid() {
 
   const [collapsingSlug, setCollapsingSlug] = useState<string | null>(null);
   const prevExpandedRef = useRef(expandedSlug);
+  const pendingSlugRef = useRef<string | null>(null);
 
   const prefersReducedMotion = useMediaQuery(
     '(prefers-reduced-motion: reduce)',
   );
-  const timeout = prefersReducedMotion ? 0 : 350;
+  const timeout = prefersReducedMotion ? 0 : 450;
 
   if (prevExpandedRef.current && prevExpandedRef.current !== expandedSlug) {
     if (collapsingSlug !== prevExpandedRef.current) {
@@ -38,6 +39,10 @@ export function ProjectGrid() {
   const handleToggle = useCallback(
     (slug: string) => {
       if (expandedSlug === slug) {
+        pendingSlugRef.current = null;
+        navigate('/#projects');
+      } else if (expandedSlug) {
+        pendingSlugRef.current = slug;
         navigate('/#projects');
       } else {
         navigate(`/#projects/${slug}`);
@@ -46,9 +51,17 @@ export function ProjectGrid() {
     [expandedSlug, navigate],
   );
 
-  const handleCollapseExited = useCallback((slug: string) => {
-    setCollapsingSlug((prev) => (prev === slug ? null : prev));
-  }, []);
+  const handleCollapseExited = useCallback(
+    (slug: string) => {
+      setCollapsingSlug((prev) => (prev === slug ? null : prev));
+      const pending = pendingSlugRef.current;
+      if (pending) {
+        pendingSlugRef.current = null;
+        navigate(`/#projects/${pending}`);
+      }
+    },
+    [navigate],
+  );
 
   const handleScrollToDetail = useCallback((slug: string) => {
     document
