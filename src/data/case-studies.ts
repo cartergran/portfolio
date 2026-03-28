@@ -41,6 +41,11 @@ export const CASE_STUDIES: CaseStudyMap = {
     ],
     links: [
       {
+        label: 'Demo',
+        url: 'https://drive.google.com/file/d/1oy8Co2yRPMSrWR5OMxdO6wNIbBrR-8k1/view?usp=sharing',
+        kind: 'demo',
+      },
+      {
         label: 'Source Code',
         url: 'https://github.com/cartergran/panorama',
         kind: 'repo',
