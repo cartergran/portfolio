@@ -7,10 +7,14 @@ const SKILLS = [
   'React',
   'TypeScript',
   'Node.js',
-  'Material UI',
-  'Python',
+  'Express',
+  'Java',
+  'Spring Boot',
   'SQL',
   'REST APIs',
+  'AWS',
+  'Google Cloud Storage',
+  'Agentic Workflows',
   'Git',
 ] as const;
 
