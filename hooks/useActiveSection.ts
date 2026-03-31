@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 export function useActiveSection(sectionIds: string[]): string | null {
   const [activeId, setActiveId] = useState<string | null>(() => {
+    if (typeof window === 'undefined') return sectionIds[0] ?? null;
     const hash = window.location.hash.replace('#', '');
     const sectionFromHash = hash.split('/')[0];
     return sectionIds.includes(sectionFromHash)

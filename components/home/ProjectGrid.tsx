@@ -34,12 +34,13 @@ export function ProjectGrid() {
 
   // Detect when expandedSlug transitions from a slug to null/different slug
   // to trigger collapse animation
-  if (prevExpandedRef.current && prevExpandedRef.current !== expandedSlug) {
-    if (collapsingSlug !== prevExpandedRef.current) {
-      setCollapsingSlug(prevExpandedRef.current);
+  useEffect(() => {
+    const prev = prevExpandedRef.current;
+    prevExpandedRef.current = expandedSlug;
+    if (prev && prev !== expandedSlug) {
+      setCollapsingSlug((c) => (c !== prev ? prev : c));
     }
-  }
-  prevExpandedRef.current = expandedSlug;
+  }, [expandedSlug]);
 
   const navigate = useCallback((hash: string) => {
     window.history.pushState(null, '', hash);
