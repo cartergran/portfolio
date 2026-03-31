@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — mapped from MUI palette in src/app/theme.ts */
+  --color-primary: #1a1a2e;
+  --color-primary-light: #30305a;
+  --color-primary-dark: #0f0f1a;
+  --color-secondary: #4a6cf7;
+  --color-secondary-light: #7b93f9;
+  --color-secondary-dark: #2a4cd4;
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-text: #1a1a2e;
+  --color-text-muted: #5a5a72;
+  --color-divider: rgba(26, 26, 46, 0.08);
+
+  /* Typography */
+  --font-inter: 'Inter', sans-serif;
+
+  /* Animations */
+  --animate-fade-in-up: fade-in-up 0.5s ease forwards;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
