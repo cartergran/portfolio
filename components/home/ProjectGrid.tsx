@@ -7,6 +7,8 @@ import { ProjectCard } from '@/components/home/ProjectCard';
 import { ProjectDetail } from '@/components/home/ProjectDetail';
 import { FEATURED_PROJECTS } from '@/data/projects';
 
+const ENTER_DURATION_MS = 500;
+
 function slugFromHash(hash: string): string | null {
   const raw = hash.replace('#', '');
   return raw.startsWith('projects/') ? raw.slice('projects/'.length) : null;
@@ -22,31 +24,30 @@ export function ProjectGrid() {
     getExpandedSlug,
   );
   const [collapsingSlug, setCollapsingSlug] = useState<string | null>(null);
-  const prevExpandedRef = useRef(expandedSlug);
   const pendingSlugRef = useRef<string | null>(null);
-
-  // Sync expandedSlug with hash changes (browser back/forward)
-  useEffect(() => {
-    const handleHashChange = () => {
-      setExpandedSlug(getExpandedSlug());
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  // Detect when expandedSlug transitions from a slug to null/different slug
-  // to trigger collapse animation
-  useEffect(() => {
-    const prev = prevExpandedRef.current;
-    prevExpandedRef.current = expandedSlug;
-    if (prev && prev !== expandedSlug) {
-      setCollapsingSlug((c) => (c !== prev ? prev : c));
-    }
-  }, [expandedSlug]);
+  const prevExpandedRef = useRef(expandedSlug);
 
   const navigate = useCallback((hash: string) => {
     window.history.pushState(null, '', hash);
     window.dispatchEvent(new HashChangeEvent('hashchange'));
+  }, []);
+
+  // Sync state with hash changes. Both setters are called synchronously so
+  // React 18's automatic batching merges them into one render. The detail
+  // stays mounted throughout the collapse animation and afterLeave fires.
+  useEffect(() => {
+    const handleHashChange = () => {
+      const nextSlug = getExpandedSlug();
+      const prev = prevExpandedRef.current;
+      prevExpandedRef.current = nextSlug;
+
+      if (prev && prev !== nextSlug) {
+        setCollapsingSlug(prev);
+      }
+      setExpandedSlug(nextSlug);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   const handleToggle = useCallback(
@@ -76,11 +77,47 @@ export function ProjectGrid() {
     [navigate],
   );
 
-  const handleScrollToDetail = useCallback((slug: string) => {
-    document
-      .getElementById(`project-detail-${slug}`)
-      ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, []);
+  // After the enter animation completes:
+  //   1. Scroll the detail into view.
+  //   2. Attach an IntersectionObserver that collapses the panel once the user
+  //      scrolls it fully out of the viewport.
+  //
+  // The observer is set up inside the same setTimeout as the scroll so it only
+  // starts watching after the panel is at full height. A `hasSeen` flag guards
+  // against the observer's synchronous initial callback firing with
+  // isIntersecting=false before the smooth scroll has brought the element into
+  // view. Without it, the panel would immediately re-collapse.
+  useEffect(() => {
+    if (!expandedSlug) return;
+    const id = `project-detail-${expandedSlug}`;
+    let observer: IntersectionObserver | null = null;
+
+    const timer = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      let hasSeen = false;
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            hasSeen = true;
+          } else if (hasSeen) {
+            observer?.disconnect();
+            navigate('/#projects');
+          }
+        },
+        { threshold: 0 },
+      );
+      observer.observe(el);
+    }, ENTER_DURATION_MS + 10);
+
+    return () => {
+      clearTimeout(timer);
+      observer?.disconnect();
+    };
+  }, [expandedSlug, navigate]);
 
   const delays = ['', 'delay-100', 'delay-200'];
 
@@ -118,7 +155,6 @@ export function ProjectGrid() {
               isExpanded={isExpanded}
               onClose={() => navigate('/#projects')}
               onAfterLeave={() => handleCollapseExited(project.slug)}
-              onAfterEnter={() => handleScrollToDetail(project.slug)}
             />
           </div>
         );

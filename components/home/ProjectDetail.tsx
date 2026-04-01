@@ -29,16 +29,17 @@ export function ProjectDetail({
   return (
     <Transition
       show={isExpanded}
-      enter="transition-all duration-300 ease-in-out"
-      enterFrom="opacity-0 max-h-0"
-      enterTo="opacity-100 max-h-[2000px]"
-      leave="transition-all duration-200 ease-in-out"
-      leaveFrom="opacity-100 max-h-[2000px]"
-      leaveTo="opacity-0 max-h-0"
+      className="grid"
+      enter="transition-all duration-500 ease-in-out"
+      enterFrom="opacity-0 [grid-template-rows:0fr]"
+      enterTo="opacity-100 [grid-template-rows:1fr]"
+      leave="transition-all duration-300 ease-in-out"
+      leaveFrom="opacity-100 [grid-template-rows:1fr]"
+      leaveTo="opacity-0 [grid-template-rows:0fr]"
       afterLeave={onAfterLeave}
       afterEnter={onAfterEnter}
     >
-      <div className="overflow-hidden">
+      <div className="min-h-0 overflow-hidden">
         <div
           className={cn(
             'border-divider rounded-xl border',
