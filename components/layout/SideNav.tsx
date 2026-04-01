@@ -80,11 +80,13 @@ export function SideNav() {
                 type="button"
                 onClick={() => scrollToSection(section.id)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`hover:text-text w-full border-l-[3px] px-4 py-2.5 text-left text-sm transition-colors duration-200 hover:bg-black/5 ${
+                className={cn(
+                  'hover:text-text w-full cursor-pointer border-l-[3px] px-4 py-2.5',
+                  'text-left text-sm transition-colors duration-200 hover:bg-black/5',
                   isActive
                     ? 'border-secondary text-text font-semibold'
-                    : 'text-text-muted border-transparent font-normal'
-                }`}
+                    : 'text-text-muted border-transparent font-normal',
+                )}
               >
                 {section.label}
               </button>
