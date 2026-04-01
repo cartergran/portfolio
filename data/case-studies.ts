@@ -1,7 +1,7 @@
 import type { CaseStudyMap } from '../types/project';
 
 export const CASE_STUDIES: CaseStudyMap = {
-  'panorama': {
+  panorama: {
     sections: [
       {
         kind: 'overview',
@@ -16,7 +16,7 @@ export const CASE_STUDIES: CaseStudyMap = {
       {
         kind: 'approach',
         heading: 'Approach',
-        body: 'I designed the product from the investor\'s existing mental model: they already understand what a public brokerage portfolio looks like. The goal was to replicate that experience exactly, showing total portfolio value over time, a list of funds beneath it, and the ability to drill into any fund and see its underlying investments, all populated with private market data. The family office sits in the middle: they upload the documents, the platform does the extraction, and their investors see the result without ever touching a PDF.',
+        body: "I designed the product from the investor's existing mental model: they already understand what a public brokerage portfolio looks like. The goal was to replicate that experience exactly, showing total portfolio value over time, a list of funds beneath it, and the ability to drill into any fund and see its underlying investments, all populated with private market data. The family office sits in the middle: they upload the documents, the platform does the extraction, and their investors see the result without ever touching a PDF.",
       },
       {
         kind: 'challenges',
@@ -26,7 +26,7 @@ export const CASE_STUDIES: CaseStudyMap = {
       {
         kind: 'implementation',
         heading: 'Implementation',
-        body: 'The platform has two distinct sides. On the family office side, document upload triggers a parsing pipeline: the PDF is stored in S3, a presigned URL is generated and sent to Claude, and the extracted investment figures are validated and written to a MySQL database via an Express API. On the investor side, a React app presents a two-panel layout with a time-series chart on top and a scrollable list of funds or investments below. Every screen supports a toggle to flip the two panels so the list moves to the top and the chart expands to show all positions overlaid. A secondary toggle lets users switch between value metrics (total value, invested capital, gain) across all views. Family offices can also create per-investor statements that slice their fund-level data down to each client\'s proportional stake.',
+        body: "The platform has two distinct sides. On the family office side, document upload triggers a parsing pipeline: the PDF is stored in S3, a presigned URL is generated and sent to Claude, and the extracted investment figures are validated and written to a MySQL database via an Express API. On the investor side, a React app presents a two-panel layout with a time-series chart on top and a scrollable list of funds or investments below. Every screen supports a toggle to flip the two panels so the list moves to the top and the chart expands to show all positions overlaid. A secondary toggle lets users switch between value metrics (total value, invested capital, gain) across all views. Family offices can also create per-investor statements that slice their fund-level data down to each client's proportional stake.",
       },
       {
         kind: 'impact',
@@ -35,8 +35,16 @@ export const CASE_STUDIES: CaseStudyMap = {
       },
     ],
     metrics: [
-      { label: 'Investments per fund', value: '50-100', unit: 'tracked per quarter' },
-      { label: 'Manual reconciliation', value: '0', unit: 'PDF comparisons needed' },
+      {
+        label: 'Investments per fund',
+        value: '50-100',
+        unit: 'tracked per quarter',
+      },
+      {
+        label: 'Manual reconciliation',
+        value: '0',
+        unit: 'PDF comparisons needed',
+      },
       { label: 'Data source', value: 'Quarterly PDFs', unit: 'auto-extracted' },
     ],
     links: [
@@ -53,14 +61,23 @@ export const CASE_STUDIES: CaseStudyMap = {
     ],
     techStack: [
       { name: 'React', role: 'Investor-facing portfolio and fund views' },
-      { name: 'Express', role: 'REST API for document ingestion and data access' },
-      { name: 'MySQL', role: 'Structured storage for investment and fund data' },
+      {
+        name: 'Express',
+        role: 'REST API for document ingestion and data access',
+      },
+      {
+        name: 'MySQL',
+        role: 'Structured storage for investment and fund data',
+      },
       { name: 'Claude', role: 'PDF extraction and investment data parsing' },
-      { name: 'AWS S3', role: 'PDF storage and presigned URL generation for document processing' },
+      {
+        name: 'AWS S3',
+        role: 'PDF storage and presigned URL generation for document processing',
+      },
     ],
   },
 
-  'imagine': {
+  imagine: {
     sections: [
       {
         kind: 'overview',
@@ -96,7 +113,11 @@ export const CASE_STUDIES: CaseStudyMap = {
     metrics: [
       { label: 'Grid size', value: '8x8', unit: '64 tiles per puzzle' },
       { label: 'Max score', value: '314', unit: 'points' },
-      { label: 'Daily rotation', value: 'Automated', unit: 'zero manual steps' },
+      {
+        label: 'Daily rotation',
+        value: 'Automated',
+        unit: 'zero manual steps',
+      },
     ],
     links: [
       {
@@ -111,11 +132,26 @@ export const CASE_STUDIES: CaseStudyMap = {
       },
     ],
     techStack: [
-      { name: 'TypeScript', role: 'End-to-end type safety across client and server' },
-      { name: 'React', role: 'Game UI, tile interaction, and two-phase guess flow' },
-      { name: 'Express', role: 'API server with server-side validation and tile delivery' },
-      { name: 'Jimp', role: 'Server-side image pixelation and tile pre-generation' },
-      { name: 'Google Cloud Storage', role: 'Puzzle images, metadata, and daily score files' },
+      {
+        name: 'TypeScript',
+        role: 'End-to-end type safety across client and server',
+      },
+      {
+        name: 'React',
+        role: 'Game UI, tile interaction, and two-phase guess flow',
+      },
+      {
+        name: 'Express',
+        role: 'API server with server-side validation and tile delivery',
+      },
+      {
+        name: 'Jimp',
+        role: 'Server-side image pixelation and tile pre-generation',
+      },
+      {
+        name: 'Google Cloud Storage',
+        role: 'Puzzle images, metadata, and daily score files',
+      },
     ],
   },
 
@@ -124,7 +160,7 @@ export const CASE_STUDIES: CaseStudyMap = {
       {
         kind: 'overview',
         heading: 'Overview',
-        body: 'Spotify Lounge is a UX concept designed in 2017 to improve music discovery through social listening. The concept centers on a virtual lounge: a shared room where any Spotify user can connect, listen to the same song in real time, vote on a collaborative queue, and discover new music through the people they follow. The concept predates Spotify\'s own Jams feature by several years and arrived at nearly the same solution independently.',
+        body: "Spotify Lounge is a UX concept designed in 2017 to improve music discovery through social listening. The concept centers on a virtual lounge: a shared room where any Spotify user can connect, listen to the same song in real time, vote on a collaborative queue, and discover new music through the people they follow. The concept predates Spotify's own Jams feature by several years and arrived at nearly the same solution independently.",
       },
       {
         kind: 'problem',
@@ -134,17 +170,17 @@ export const CASE_STUDIES: CaseStudyMap = {
       {
         kind: 'approach',
         heading: 'Approach',
-        body: 'I started with four user interviews to test the hypothesis that Spotify\'s recommendations and sharing were the bottleneck for discovery. What I found reframed the problem: the real gap was the absence of a shared, real-time listening experience. From there, I ran a brainstorming session that produced six candidate features across three problem spaces: face-to-face sharing, online community, and personalized discovery. Guerrilla testing narrowed the field to one: the Lounge.',
+        body: "I started with four user interviews to test the hypothesis that Spotify's recommendations and sharing were the bottleneck for discovery. What I found reframed the problem: the real gap was the absence of a shared, real-time listening experience. From there, I ran a brainstorming session that produced six candidate features across three problem spaces: face-to-face sharing, online community, and personalized discovery. Guerrilla testing narrowed the field to one: the Lounge.",
       },
       {
         kind: 'challenges',
         heading: 'Challenges',
-        body: 'The core design challenge was balancing democratic control with a coherent listening experience. Letting anyone in the lounge influence the queue risked chaos, but giving the leader total control reduced the social value of the feature. The solution was a vote-ranked queue: anyone could add songs or like existing ones, and the order updated dynamically based on the crowd\'s preferences. A second challenge emerged during user testing: participants couldn\'t tell who else was in the lounge, which undercut the social dimension entirely. This led to an overlay design showing connected users and their profiles.',
+        body: "The core design challenge was balancing democratic control with a coherent listening experience. Letting anyone in the lounge influence the queue risked chaos, but giving the leader total control reduced the social value of the feature. The solution was a vote-ranked queue: anyone could add songs or like existing ones, and the order updated dynamically based on the crowd's preferences. A second challenge emerged during user testing: participants couldn't tell who else was in the lounge, which undercut the social dimension entirely. This led to an overlay design showing connected users and their profiles.",
       },
       {
         kind: 'implementation',
         heading: 'Implementation',
-        body: 'I designed three distinct entry points into the Lounge from the Spotify home screen, prioritizing quick access without displacing existing features. Medium-fidelity wireframes established the core layout: current track, upcoming queue, and interaction controls on a single screen. These were translated to high-fidelity mockups in Sketch using Spotify\'s existing visual language, then linked into an interactive prototype in InVision. User tests surfaced the social visibility gap, which led to a second design iteration adding a slide-out overlay with the connected users list and tap-through to their profiles. A preview mechanic let users hold down any queued song to hear a short sample on their own device without interrupting the lounge.',
+        body: "I designed three distinct entry points into the Lounge from the Spotify home screen, prioritizing quick access without displacing existing features. Medium-fidelity wireframes established the core layout: current track, upcoming queue, and interaction controls on a single screen. These were translated to high-fidelity mockups in Sketch using Spotify's existing visual language, then linked into an interactive prototype in InVision. User tests surfaced the social visibility gap, which led to a second design iteration adding a slide-out overlay with the connected users list and tap-through to their profiles. A preview mechanic let users hold down any queued song to hear a short sample on their own device without interrupting the lounge.",
       },
       {
         kind: 'impact',
@@ -155,7 +191,11 @@ export const CASE_STUDIES: CaseStudyMap = {
     metrics: [
       { label: 'Research participants', value: '4', unit: 'user interviews' },
       { label: 'Features prototyped', value: '6', unit: 'narrowed to 1' },
-      { label: 'Years before Spotify Jams', value: '5', unit: 'independent concept' },
+      {
+        label: 'Years before Spotify Jams',
+        value: '5',
+        unit: 'independent concept',
+      },
     ],
     links: [
       {
@@ -167,8 +207,14 @@ export const CASE_STUDIES: CaseStudyMap = {
     techStack: [
       { name: 'Sketch', role: 'High-fidelity UI design and visual mockups' },
       { name: 'InVision', role: 'Interactive prototype for user testing' },
-      { name: 'UX Research', role: 'User interviews and guerrilla testing to define and validate the concept' },
-      { name: 'Product Design', role: 'Concept definition, queue mechanics, and two rounds of design iteration' },
+      {
+        name: 'UX Research',
+        role: 'User interviews and guerrilla testing to define and validate the concept',
+      },
+      {
+        name: 'Product Design',
+        role: 'Concept definition, queue mechanics, and two rounds of design iteration',
+      },
     ],
   },
 };

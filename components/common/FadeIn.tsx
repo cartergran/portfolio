@@ -30,7 +30,7 @@ export function FadeIn({
       id={id}
       aria-labelledby={ariaLabelledBy}
       className={`transition-all duration-500 ${
-        inView ? 'animate-fade-in-up opacity-100' : 'opacity-0 translate-y-4'
+        inView ? 'animate-fade-in-up opacity-100' : 'translate-y-4 opacity-0'
       } ${delay} ${className}`}
     >
       {children}

@@ -18,14 +18,14 @@ const SKILLS = [
 export function SkillsStrip() {
   return (
     <FadeIn threshold={0.1}>
-      <p className="text-xs uppercase tracking-[0.1em] text-text-muted mb-3 block">
+      <p className="text-text-muted mb-3 block text-xs tracking-[0.1em] uppercase">
         Core Technologies
       </p>
       <div className="flex flex-wrap gap-2 overflow-x-auto">
         {SKILLS.map((skill) => (
           <span
             key={skill}
-            className="text-xs px-2.5 py-1 rounded-full bg-black/5 text-text font-medium whitespace-nowrap"
+            className="text-text rounded-full bg-black/5 px-2.5 py-1 text-xs font-medium whitespace-nowrap"
           >
             {skill}
           </span>

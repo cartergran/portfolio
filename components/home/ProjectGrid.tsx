@@ -18,7 +18,9 @@ function getExpandedSlug(): string | null {
 }
 
 export function ProjectGrid() {
-  const [expandedSlug, setExpandedSlug] = useState<string | null>(getExpandedSlug);
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(
+    getExpandedSlug,
+  );
   const [collapsingSlug, setCollapsingSlug] = useState<string | null>(null);
   const prevExpandedRef = useRef(expandedSlug);
   const pendingSlugRef = useRef<string | null>(null);
@@ -89,7 +91,7 @@ export function ProjectGrid() {
         headingId="projects-heading"
         subtitle="A selection of projects that showcase my approach to building software."
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {FEATURED_PROJECTS.map((project, i) => (
           <FadeIn key={project.slug} delay={delays[i % 3]}>
             <ProjectCard
@@ -106,7 +108,11 @@ export function ProjectGrid() {
         const isCollapsing = collapsingSlug === project.slug;
         if (!isExpanded && !isCollapsing) return null;
         return (
-          <div key={project.slug} id={`project-detail-${project.slug}`} className="pt-6">
+          <div
+            key={project.slug}
+            id={`project-detail-${project.slug}`}
+            className="pt-6"
+          >
             <ProjectDetail
               project={project}
               isExpanded={isExpanded}

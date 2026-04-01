@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { cn } from '@/lib/utils';
 import './globals.css';
 
 const inter = Inter({
@@ -19,12 +20,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${inter.variable} scroll-smooth`}>
-      <body className="bg-bg text-text antialiased">
-        {children}
-      </body>
+    <html lang="en" className={cn(inter.variable, 'scroll-smooth')}>
+      <body className="bg-bg text-text antialiased">{children}</body>
     </html>
   );
 }

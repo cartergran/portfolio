@@ -25,7 +25,9 @@ export function useScrollToSection(sectionIds?: string[]) {
         const el = document.getElementById(id);
         if (!el) return;
         const top =
-          el.getBoundingClientRect().top + window.scrollY - getScrollTopOffset();
+          el.getBoundingClientRect().top +
+          window.scrollY -
+          getScrollTopOffset();
         window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       }
       const currentHash = window.location.hash.replace('#', '');

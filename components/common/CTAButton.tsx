@@ -2,6 +2,7 @@
 
 import type { ReactNode, MouseEventHandler } from 'react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 type Variant = 'contained' | 'outlined' | 'text';
 type Size = 'small' | 'medium' | 'large';
@@ -21,8 +22,7 @@ interface CTAButtonProps {
 }
 
 const variantClasses: Record<Variant, string> = {
-  contained:
-    'bg-primary text-white hover:bg-primary/90 border border-primary',
+  contained: 'bg-primary text-white hover:bg-primary/90 border border-primary',
   outlined:
     'bg-transparent text-text border border-divider hover:border-primary hover:text-primary',
   text: 'bg-transparent text-text hover:text-primary border border-transparent',
@@ -47,12 +47,24 @@ export function CTAButton({
   onClick,
   className = '',
 }: CTAButtonProps) {
-  const base =
-    `inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-colors duration-200 ${variantClasses[variant]} ${sizeClasses[size]} ${fullWidth ? 'w-full' : ''} ${disabled ? 'opacity-50 cursor-not-allowed' : ''} ${className}`;
+  const base = cn(
+    'inline-flex items-center justify-center gap-2',
+    'font-semibold rounded-lg',
+    'transition-colors duration-200',
+    variantClasses[variant],
+    sizeClasses[size],
+    fullWidth && 'w-full',
+    disabled && 'opacity-50 cursor-not-allowed',
+    className,
+  );
 
   if (to) {
     return (
-      <Link href={to} className={base} onClick={onClick as MouseEventHandler<HTMLAnchorElement>}>
+      <Link
+        href={to}
+        className={base}
+        onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
+      >
         {startIcon}
         {children}
         {endIcon}

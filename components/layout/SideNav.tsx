@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Github, Linkedin } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { useScrollToSection } from '@/hooks/useScrollToSection';
 
@@ -20,11 +21,15 @@ export function SideNav() {
   return (
     <nav
       aria-label="Section navigation"
-      className="hidden md:flex flex-col fixed top-0 left-0 w-1/3 h-screen bg-surface border-r border-divider z-50"
+      className={cn(
+        'bg-surface border-divider',
+        'fixed top-0 left-0 z-50 hidden',
+        'h-screen w-1/3 flex-col border-r md:flex',
+      )}
     >
       {/* Condensed hero */}
-      <div className="px-6 pt-6 pb-4 flex-none">
-        <div className="flex flex-col gap-1 mb-4">
+      <div className="flex-none px-6 pt-6 pb-4">
+        <div className="mb-4 flex flex-col gap-1">
           <Image
             src="/logo.svg"
             alt="Logo"
@@ -32,9 +37,9 @@ export function SideNav() {
             height={144}
             className="object-contain"
           />
-          <h1 className="text-xl font-bold text-text">Carter Gran</h1>
-          <p className="text-base text-secondary">Full-Stack Developer</p>
-          <p className="text-sm text-text-muted leading-snug">
+          <h1 className="text-text text-xl font-bold">Carter Gran</h1>
+          <p className="text-secondary text-base">Full-Stack Developer</p>
+          <p className="text-text-muted text-sm leading-snug">
             Turning &ldquo;this could be cool&rdquo; into software worth using.
           </p>
         </div>
@@ -44,7 +49,7 @@ export function SideNav() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="p-1.5 text-text-muted hover:text-text transition-colors duration-200"
+            className="text-text-muted hover:text-text p-1.5 transition-colors duration-200"
           >
             <Github size={18} />
           </a>
@@ -53,7 +58,7 @@ export function SideNav() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="p-1.5 text-text-muted hover:text-text transition-colors duration-200"
+            className="text-text-muted hover:text-text p-1.5 transition-colors duration-200"
           >
             <Linkedin size={18} />
           </a>
@@ -75,10 +80,10 @@ export function SideNav() {
                 type="button"
                 onClick={() => scrollToSection(section.id)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`w-full text-left px-4 py-2.5 border-l-[3px] text-sm transition-colors duration-200 hover:text-text hover:bg-black/5 ${
+                className={`hover:text-text w-full border-l-[3px] px-4 py-2.5 text-left text-sm transition-colors duration-200 hover:bg-black/5 ${
                   isActive
                     ? 'border-secondary text-text font-semibold'
-                    : 'border-transparent text-text-muted font-normal'
+                    : 'text-text-muted border-transparent font-normal'
                 }`}
               >
                 {section.label}

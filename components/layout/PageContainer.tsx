@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 interface PageContainerProps {
   children: ReactNode;
@@ -6,17 +7,25 @@ interface PageContainerProps {
   topbar?: ReactNode;
 }
 
-export function PageContainer({ children, sidebar, topbar }: PageContainerProps) {
+export function PageContainer({
+  children,
+  sidebar,
+  topbar,
+}: PageContainerProps) {
   return (
     <>
       {topbar && <div className="block md:hidden">{topbar}</div>}
       <div className="flex min-h-screen">
         {sidebar && (
-          <aside className="hidden md:block w-1/3 shrink-0">
-            {sidebar}
-          </aside>
+          <aside className="hidden w-1/3 shrink-0 md:block">{sidebar}</aside>
         )}
-        <main className="flex-1 min-w-0 px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 max-w-3xl">
+        <main
+          className={cn(
+            'max-w-3xl min-w-0 flex-1',
+            'px-4 sm:px-6 md:px-8',
+            'py-4 sm:py-6 md:py-8',
+          )}
+        >
           {children}
         </main>
       </div>

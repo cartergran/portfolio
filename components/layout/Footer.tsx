@@ -2,12 +2,12 @@ export function Footer() {
   return (
     <footer>
       <hr className="border-divider" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-sm text-text-muted">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex flex-col items-center justify-between gap-2 py-6 sm:flex-row sm:py-8">
+          <p className="text-text-muted text-sm">
             &copy; {new Date().getFullYear()} Carter Gran
           </p>
-          <p className="text-sm text-text-muted">
+          <p className="text-text-muted text-sm">
             Built with Next.js &amp; Tailwind CSS
           </p>
         </div>

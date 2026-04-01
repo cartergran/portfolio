@@ -1,7 +1,4 @@
-export type ProjectSlug =
-  | 'panorama'
-  | 'imagine'
-  | 'spotify-lounge';
+export type ProjectSlug = 'panorama' | 'imagine' | 'spotify-lounge';
 
 export interface ProjectLink {
   label: string;

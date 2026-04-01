@@ -10,5 +10,5 @@
   "jsxSingleQuote": false,
   "bracketSameLine": false,
   "singleAttributePerLine": false,
-  "plugins": []
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

@@ -5,23 +5,25 @@ import { FadeIn } from '@/components/common/FadeIn';
 
 export function HeroSection() {
   return (
-    <FadeIn className="py-12 sm:py-20 md:py-24 md:hidden">
-      <div className="flex flex-col gap-6 max-w-xl">
+    <FadeIn className="py-12 sm:py-20 md:hidden md:py-24">
+      <div className="flex max-w-xl flex-col gap-6">
         <Image
           src="/logo.svg"
           alt="Logo"
           width={144}
           height={144}
-          className="w-[88px] h-[88px] sm:w-36 sm:h-36 object-contain"
+          className="h-[88px] w-[88px] object-contain sm:h-36 sm:w-36"
         />
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight text-text">
+        <h1 className="text-text text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
           Hi, I&rsquo;m Carter
         </h1>
-        <p className="text-xl font-medium text-secondary">Full-Stack Developer</p>
-        <p className="text-base text-text-muted max-w-[520px] leading-relaxed">
+        <p className="text-secondary text-xl font-medium">
+          Full-Stack Developer
+        </p>
+        <p className="text-text-muted max-w-[520px] text-base leading-relaxed">
           Turning &ldquo;this could be cool&rdquo; into software worth using.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 pt-1">
+        <div className="flex flex-col gap-3 pt-1 sm:flex-row">
           <CTAButton
             href="https://github.com/cartergran"
             variant="outlined"

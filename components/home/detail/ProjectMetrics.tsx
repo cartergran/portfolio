@@ -9,22 +9,24 @@ export function ProjectMetrics({ metrics }: ProjectMetricsProps) {
 
   return (
     <div className="mb-8 sm:mb-10">
-      <p className="text-xs uppercase tracking-[0.1em] text-text-muted mb-4 block">
+      <p className="text-text-muted mb-4 block text-xs tracking-[0.1em] uppercase">
         Key Metrics
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
         {metrics.map((metric) => (
           <div
             key={metric.label}
-            className="flex-1 p-4 bg-black/5 rounded-lg border-l-[3px] border-secondary"
+            className="border-secondary flex-1 rounded-lg border-l-[3px] bg-black/5 p-4"
           >
             <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-secondary">{metric.value}</span>
+              <span className="text-secondary text-2xl font-bold">
+                {metric.value}
+              </span>
               {metric.unit && (
-                <span className="text-xs text-text-muted">{metric.unit}</span>
+                <span className="text-text-muted text-xs">{metric.unit}</span>
               )}
             </div>
-            <p className="text-sm text-text-muted mt-1">{metric.label}</p>
+            <p className="text-text-muted mt-1 text-sm">{metric.label}</p>
           </div>
         ))}
       </div>

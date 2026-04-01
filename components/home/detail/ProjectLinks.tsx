@@ -1,5 +1,6 @@
 import { ExternalLink, Github, Smartphone, Link } from 'lucide-react';
 import type { ProjectLink } from '@/types/project';
+import { cn } from '@/lib/utils';
 
 const ICON_MAP = {
   demo: ExternalLink,
@@ -17,7 +18,7 @@ export function ProjectLinks({ links }: ProjectLinksProps) {
 
   return (
     <div className="mb-8 sm:mb-10">
-      <p className="text-xs uppercase tracking-[0.1em] text-text-muted mb-3 block">
+      <p className="text-text-muted mb-3 block text-xs tracking-[0.1em] uppercase">
         Links
       </p>
       <div className="flex flex-wrap gap-3">
@@ -29,7 +30,11 @@ export function ProjectLinks({ links }: ProjectLinksProps) {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-semibold rounded-lg border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors duration-200"
+              className={cn(
+                'border-secondary text-secondary hover:bg-secondary hover:text-white',
+                'inline-flex items-center gap-1.5 rounded-lg border',
+                'px-3 py-1.5 text-sm font-semibold transition-colors duration-200',
+              )}
             >
               <Icon size={14} />
               {link.label}

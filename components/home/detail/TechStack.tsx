@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import type { TechDetail } from '@/types/tech';
 
 interface TechStackProps {
@@ -9,7 +10,7 @@ export function TechStack({ techStack }: TechStackProps) {
 
   return (
     <div>
-      <p className="text-xs uppercase tracking-[0.1em] text-text-muted mb-3 block">
+      <p className="text-text-muted mb-3 block text-xs tracking-[0.1em] uppercase">
         Tech Stack
       </p>
       <div className="flex flex-wrap gap-2">
@@ -17,7 +18,12 @@ export function TechStack({ techStack }: TechStackProps) {
           <span
             key={tech.name}
             title={tech.role}
-            className="text-sm px-3 py-1.5 rounded-full border border-divider text-text-muted font-medium transition-colors duration-200 hover:border-secondary hover:text-secondary cursor-default"
+            className={cn(
+              'border-divider text-text-muted',
+              'hover:border-secondary hover:text-secondary',
+              'cursor-default rounded-full border px-3 py-1.5 text-sm font-medium',
+              'transition-colors duration-200',
+            )}
           >
             {tech.name}
           </span>
