@@ -1,14 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 export function useActiveSection(sectionIds: string[]): string | null {
-  const [activeId, setActiveId] = useState<string | null>(() => {
-    if (typeof window === 'undefined') return sectionIds[0] ?? null;
-    const hash = window.location.hash.replace('#', '');
-    const sectionFromHash = hash.split('/')[0];
-    return sectionIds.includes(sectionFromHash)
-      ? sectionFromHash
-      : (sectionIds[0] ?? null);
-  });
+  const [activeId, setActiveId] = useState<string | null>(null);
   const firstId = sectionIds[0] ?? null;
 
   const resolveActive = useCallback(() => {
@@ -37,10 +30,16 @@ export function useActiveSection(sectionIds: string[]): string | null {
   }, [firstId, sectionIds]);
 
   useEffect(() => {
-    resolveActive();
+    const hash = window.location.hash.replace('#', '');
+    const sectionFromHash = hash.split('/')[0];
+    if (sectionIds.includes(sectionFromHash)) {
+      setActiveId(sectionFromHash);
+    } else {
+      resolveActive();
+    }
     window.addEventListener('scroll', resolveActive, { passive: true });
     return () => window.removeEventListener('scroll', resolveActive);
-  }, [resolveActive]);
+  }, [resolveActive, sectionIds]);
 
   useEffect(() => {
     if (activeId === null) return;

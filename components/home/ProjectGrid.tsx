@@ -20,16 +20,23 @@ function getExpandedSlug(): string | null {
 }
 
 export function ProjectGrid() {
-  const [expandedSlug, setExpandedSlug] = useState<string | null>(
-    getExpandedSlug,
-  );
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
   const [collapsingSlug, setCollapsingSlug] = useState<string | null>(null);
   const pendingSlugRef = useRef<string | null>(null);
-  const prevExpandedRef = useRef(expandedSlug);
+  const prevExpandedRef = useRef<string | null>(null);
 
   const navigate = useCallback((hash: string) => {
     window.history.pushState(null, '', hash);
     window.dispatchEvent(new HashChangeEvent('hashchange'));
+  }, []);
+
+  // Initialize expanded state from hash after hydration.
+  useEffect(() => {
+    const slug = getExpandedSlug();
+    if (slug) {
+      prevExpandedRef.current = slug;
+      setExpandedSlug(slug);
+    }
   }, []);
 
   // Sync state with hash changes. Both setters are called synchronously so
