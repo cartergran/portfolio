@@ -21,8 +21,8 @@ export function PageContainer({
         )}
         <main
           className={cn(
-            'max-w-3xl min-w-0 flex-1',
-            'px-4 sm:px-6 md:px-8',
+            'min-w-0 flex-1',
+            'px-8 sm:px-12 md:px-16',
             'py-4 sm:py-6 md:py-8',
           )}
         >

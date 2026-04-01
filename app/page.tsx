@@ -18,11 +18,13 @@ export default function HomePage() {
       </Section>
       <Section id="experience">
         <ExperienceSection />
-        <SkillsStrip />
       </Section>
       <Section id="projects">
         <ProjectGrid />
       </Section>
+      <div className="mb-12">
+        <SkillsStrip />
+      </div>
       <Footer />
     </PageContainer>
   );

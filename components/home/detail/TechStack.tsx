@@ -17,15 +17,24 @@ export function TechStack({ techStack }: TechStackProps) {
         {techStack.map((tech) => (
           <span
             key={tech.name}
-            title={tech.role}
             className={cn(
+              'relative inline-block group',
               'border-divider text-text-muted',
               'hover:border-secondary hover:text-secondary',
-              'cursor-default rounded-full border px-3 py-1.5 text-sm font-medium',
+              'cursor-pointer rounded-full border px-3 py-1.5 text-sm font-medium',
               'transition-colors duration-200',
             )}
           >
             {tech.name}
+            <span className={cn(
+              'pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2',
+              'bg-zinc-500 text-white text-xs rounded px-2 py-1 w-[180px] text-center',
+              'opacity-0 group-hover:opacity-100 transition-opacity duration-0',
+              'after:content-[""] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2',
+              'after:border-4 after:border-transparent after:border-t-zinc-500',
+            )}>
+              {tech.role}
+            </span>
           </span>
         ))}
       </div>

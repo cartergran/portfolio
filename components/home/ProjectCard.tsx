@@ -46,7 +46,7 @@ export function ProjectCard({
             'text-secondary text-sm font-semibold',
             'hover:bg-secondary hover:text-white',
             'rounded-lg px-3 py-1.5',
-            'transition-colors duration-200',
+            'cursor-pointer transition-colors duration-200',
           )}
         >
           {isExpanded ? 'Close' : 'View Project'}

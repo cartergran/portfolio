@@ -19,6 +19,7 @@ interface CTAButtonProps {
   disabled?: boolean;
   onClick?: MouseEventHandler<HTMLElement>;
   className?: string;
+  ariaExpanded?: boolean;
 }
 
 const variantClasses: Record<Variant, string> = {
@@ -46,6 +47,7 @@ export function CTAButton({
   disabled,
   onClick,
   className = '',
+  ariaExpanded,
 }: CTAButtonProps) {
   const base = cn(
     'inline-flex items-center justify-center gap-2',
@@ -93,6 +95,7 @@ export function CTAButton({
       type="button"
       disabled={disabled}
       onClick={onClick as MouseEventHandler<HTMLButtonElement>}
+      aria-expanded={ariaExpanded}
       className={base}
     >
       {startIcon}
