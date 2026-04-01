@@ -24,3 +24,9 @@ out/
 *.njsproj
 *.sln
 *.sw?
+
+# TypeScript
+*.tsbuildinfo
+
+# Docs
+docs/
