@@ -2,12 +2,14 @@ import Box from '@mui/material/Box';
 import { SideNav } from '../components/layout/SideNav';
 import { MobileTopBar } from '../components/layout/MobileTopBar';
 import { Footer } from '../components/layout/Footer';
+import { MouseGradientOverlay } from '../components/common/MouseGradientOverlay';
 import { AppRoutes } from './routes';
 import { SIDE_NAV_WIDTH } from './theme';
 
 export function App() {
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <MouseGradientOverlay />
       <SideNav />
 
       <Box
